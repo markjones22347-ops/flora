@@ -1,0 +1,3 @@
+C:/Users/safes/Desktop/lua executor/flora-temp/Flora Updater/build/CMakeFiles/FloraUpdater.dir
+C:/Users/safes/Desktop/lua executor/flora-temp/Flora Updater/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/safes/Desktop/lua executor/flora-temp/Flora Updater/build/CMakeFiles/ZERO_CHECK.dir

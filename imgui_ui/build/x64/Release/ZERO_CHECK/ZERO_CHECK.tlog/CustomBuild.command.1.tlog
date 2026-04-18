@@ -1,0 +1,10 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA-TEMP\IMGUI_UI\BUILD\CMAKEFILES\1D87EA24983ADE440079209A721E10F0\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/flora-temp/imgui_ui" "-BC:/Users/safes/Desktop/lua executor/flora-temp/imgui_ui/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/safes/Desktop/lua executor/flora-temp/imgui_ui/build/FloraImGui.slnx"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/blake3-populate"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/147c22fd86cecc3993734e8095d31a13/blake3-populate.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/5acc4662accf26bbf1f5f10fa5d26c24/blake3-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/795892bc2a61e7ea9f31c3604d22862b/blake3-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"blake3-populate"
+		],
+		"name" : "blake3-populate"
+	}
+}

@@ -1,0 +1,3 @@
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/zstd-populate.dir
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/ZERO_CHECK.dir

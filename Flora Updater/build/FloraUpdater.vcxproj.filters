@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\updater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\http.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\zip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\src\json.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\backends\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\imgui\imgui-master\backends\imgui_impl_dx11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\flora-temp\Flora Updater\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D6CEA51B-F2BC-3E78-B774-B7F381BB8378}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

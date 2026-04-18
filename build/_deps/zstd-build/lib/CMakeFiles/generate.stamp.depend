@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-src/build/cmake/CMakeModules/JoinPaths.cmake
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-src/build/cmake/lib/CMakeLists.txt
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-src/build/cmake/lib/cmake_uninstall.cmake.in
+C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-src/lib/libzstd.pc.in

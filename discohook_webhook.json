@@ -1,0 +1,41 @@
+{
+  "content": "Flora Executor v1.0.0 is now available!",
+  "embeds": [
+    {
+      "title": "Flora Executor v1.0.0",
+      "description": "A powerful Roblox script executor with a modern UI and advanced features.",
+      "color": 5814783,
+      "fields": [
+        {
+          "name": "Download",
+          "value": "[Click here to download](https://zipp-production-0794.up.railway.app/d/L87hVUm7/info)",
+          "inline": false
+        },
+        {
+          "name": "Features",
+          "value": "- Modern ImGui-based UI\n- Lua script execution\n- Auto-updating system\n- Custom installation directory\n- Script tabs and editor\n- Real-time logging\n- Roblox process attachment",
+          "inline": false
+        },
+        {
+          "name": "How to Use",
+          "value": "1. Download FloraUpdater.exe\n2. Run the updater\n3. Select installation directory (or use default)\n4. Click Install/Update\n5. Extract the downloaded ZIP file\n6. Run Flora.exe\n7. Attach to Roblox and execute scripts",
+          "inline": false
+        },
+        {
+          "name": "System Requirements",
+          "value": "- Windows 10 or later\n- Roblox installed\n- Administrator privileges (recommended)",
+          "inline": false
+        },
+        {
+          "name": "Notes",
+          "value": "- First run requires manual ZIP extraction\n- Updater checks for updates automatically\n- Close Roblox before updating",
+          "inline": false
+        }
+      ],
+      "footer": {
+        "text": "Flora Executor • Version 1.0.0"
+      },
+      "timestamp": "2026-04-18T02:38:00.000Z"
+    }
+  ]
+}

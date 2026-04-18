@@ -1,0 +1,150 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/tmp/zlib-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/tmp/zlib-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-UPDATE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/tmp/zlib-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\1FF9A2F13183138AB2E6BCB478A60400\ZLIB-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\5346A019A44EC7E590F8B947B5531942\ZLIB-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/CMakeFiles/Debug/zlib-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/zlib-populate-prefix/src/zlib-populate-stamp/Debug/zlib-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKEFILES\0D47C4C4263B03E66F4DF621127074F4\ZLIB-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZLIB-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zlib-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

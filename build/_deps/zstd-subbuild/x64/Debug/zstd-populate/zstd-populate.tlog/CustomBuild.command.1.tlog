@@ -1,0 +1,150 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/tmp/zstd-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/tmp/zstd-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-UPDATE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/tmp/zstd-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\2717E8752E62FAAF90F61DCD06A58AE6\ZSTD-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\80E68D01095B93F45BFCD42E0091B14E\ZSTD-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/Debug/zstd-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/zstd-populate-prefix/src/zstd-populate-stamp/Debug/zstd-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKEFILES\78EE8B82E25EC6A948694A4C33C60F72\ZSTD-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\ZSTD-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/zstd-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
