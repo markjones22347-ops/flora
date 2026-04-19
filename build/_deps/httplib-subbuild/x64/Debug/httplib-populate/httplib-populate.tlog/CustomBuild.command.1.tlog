@@ -1,0 +1,150 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/tmp/httplib-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/tmp/httplib-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-UPDATE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\httplib-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/tmp/httplib-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\httplib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\httplib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\httplib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\72CF2EFD7090EF20041549B62D77C4AE\HTTPLIB-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\httplib-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\C22A86E5F0AAC3D30347B70F8D7617B1\HTTPLIB-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/Debug/httplib-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/httplib-populate-prefix/src/httplib-populate-stamp/Debug/httplib-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKEFILES\32D0C3941A64B20789A8D3A442257A6A\HTTPLIB-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\HTTPLIB-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

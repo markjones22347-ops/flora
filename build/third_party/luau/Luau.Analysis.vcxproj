@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{601B314D-A353-3B50-AAE5-DC8B8E692A2D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Luau.Analysis</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Luau.Analysis.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Luau.Analysis</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Luau.Analysis.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Luau.Analysis</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Luau.Analysis.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Luau.Analysis</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Luau.Analysis.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Luau.Analysis</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4018;4388</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <IncludePaths>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(IncludePaths)</IncludePaths>
+      <AdditionalOptions>%(AdditionalOptions) /we4018 /we4388 /MP</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4018;4388</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <IncludePaths>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(IncludePaths)</IncludePaths>
+      <AdditionalOptions>%(AdditionalOptions) /we4018 /we4388 /MP</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4018;4388</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <IncludePaths>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(IncludePaths)</IncludePaths>
+      <AdditionalOptions>%(AdditionalOptions) /we4018 /we4388 /MP</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4018;4388</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <IncludePaths>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(IncludePaths)</IncludePaths>
+      <AdditionalOptions>%(AdditionalOptions) /we4018 /we4388 /MP</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Ast\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Common\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Config\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Compiler\include;C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\VM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/safes/Desktop/lua executor/Flora Executor/third_party/luau/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/third_party/luau/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Sources.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/safes/Desktop/lua executor/Flora Executor/third_party/luau/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/third_party/luau/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Sources.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/safes/Desktop/lua executor/Flora Executor/third_party/luau/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/third_party/luau/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Sources.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/safes/Desktop/lua executor/Flora Executor/third_party/luau/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/third_party/luau/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Sources.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Anyification.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ApplyTypeFunction.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\AstJsonEncoder.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\AstQuery.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\AstUtils.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Autocomplete.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\AutocompleteTypes.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\BuiltinDefinitions.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\BuiltinTypeFunctions.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Cancellation.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Clone.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Constraint.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ConstraintGenerator.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ConstraintSet.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\NativeStackGuard.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ConstraintSolver.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ControlFlow.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\DataFlowGraph.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\DcrLogger.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Def.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Documentation.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Error.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ExpectedTypeVisitor.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\FileResolver.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\FragmentAutocomplete.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Frontend.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Generalization.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\GlobalTypes.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\InferPolarity.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\InsertionOrderedMap.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Instantiation.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Instantiation2.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\IostreamHelpers.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\IterativeTypeVisitor.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\JsonEmitter.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Linter.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\LValue.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Metamethods.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Module.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ModuleResolver.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\NonStrictTypeChecker.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Normalize.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\OverloadResolution.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Polarity.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Predicate.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Quantify.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\RecursionCounter.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Refinement.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\RequireTracer.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Scope.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Set.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Simplify.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\StructuralTypeEquality.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Substitution.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Subtyping.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\SubtypingUnifier.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\SubtypingVariance.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Symbol.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TableLiteralInference.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ToDot.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TopoSortStatements.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\ToString.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TxnLog.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Type.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeArena.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeAttach.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeChecker2.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeCheckLimits.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypedAllocator.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeFunction.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeFunctionReductionGuesser.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeFunctionRuntime.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeFunctionRuntimeBuilder.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeFwd.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeIds.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeInfer.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeOrPack.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypePack.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypePairHash.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypePath.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\TypeUtils.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Unifiable.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Unifier.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\Unifier2.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\UnifierSharedState.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\UserDefinedTypeFunction.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\VisitType.h" />
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\include\Luau\IterativeTypeFunctionTypeVisitor.h" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Anyification.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ApplyTypeFunction.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\AstJsonEncoder.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\AstQuery.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\AstUtils.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Autocomplete.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\AutocompleteCore.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\BuiltinDefinitions.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\BuiltinTypeFunctions.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Clone.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Constraint.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ConstraintGenerator.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ConstraintSolver.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\DataFlowGraph.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\DcrLogger.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Def.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\EmbeddedBuiltinDefinitions.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Error.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ExpectedTypeVisitor.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\FileResolver.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\FragmentAutocomplete.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Frontend.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Generalization.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\NativeStackGuard.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\GlobalTypes.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\InferPolarity.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Instantiation.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Instantiation2.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\IostreamHelpers.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\IterativeTypeVisitor.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\IterativeTypeFunctionTypeVisitor.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\JsonEmitter.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Linter.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\LValue.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Module.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\NonStrictTypeChecker.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Normalize.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\OverloadResolution.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Quantify.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\RecursionCounter.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Refinement.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\RequireTracer.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Scope.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Simplify.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\StructuralTypeEquality.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Substitution.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Subtyping.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\SubtypingUnifier.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Symbol.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TableLiteralInference.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ToDot.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TopoSortStatements.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\ToString.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TxnLog.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Type.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeArena.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeAttach.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeChecker2.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypedAllocator.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeFunction.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeFunctionReductionGuesser.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeFunctionRuntime.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeFunctionRuntimeBuilder.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeIds.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeInfer.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeOrPack.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypePack.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypePath.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\TypeUtils.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Unifiable.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Unifier.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\Unifier2.cpp" />
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\Analysis\src\UserDefinedTypeFunction.cpp" />
+    <Natvis Include="C:\Users\safes\Desktop\lua executor\Flora Executor\third_party\luau\tools\natvis\Analysis.natvis">
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\ZERO_CHECK.vcxproj">
+      <Project>{46F376B9-4A62-3167-A529-641729CC0C58}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Luau.Ast.vcxproj">
+      <Project>{4CCA0326-4A3A-3D09-B006-99D0DCABAB76}</Project>
+      <Name>Luau.Ast</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Luau.Common.vcxproj">
+      <Project>{F5FBBB37-A679-3B9B-B67F-2A29947356AC}</Project>
+      <Name>Luau.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Luau.Compiler.vcxproj">
+      <Project>{35C4AAB3-F064-3BE5-AABF-2A95A12538D2}</Project>
+      <Name>Luau.Compiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Luau.Config.vcxproj">
+      <Project>{6D8810F1-A1BB-34F2-9B3B-C77ECED37B6B}</Project>
+      <Name>Luau.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\third_party\luau\Luau.VM.vcxproj">
+      <Project>{CC4BBA92-8734-38E8-AC34-82464448C16E}</Project>
+      <Name>Luau.VM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

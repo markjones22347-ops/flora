@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\CMakeFiles\fbf978a78b130b55d5bf0efa442c6c53\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F03AB34D-0FAE-3D6C-BBDB-3F8D3A51905C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
