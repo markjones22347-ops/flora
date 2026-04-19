@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\entropy_common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\error_private.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\fse_decompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\pool.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\threading.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\xxhash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\zstd_common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\fse_compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\hist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\huf_compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_literals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_sequences.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_superblock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_double_fast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_fast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_lazy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_ldm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstdmt_compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\huf_decompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_ddict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_decompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_decompress_block.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\cover.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\divsufsort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\fastcover.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\zdict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\zdict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\zstd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\zstd_errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\allocations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\bits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\bitstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\error_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\fse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\huf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\portability_macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\threading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\xxhash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\zstd_deps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\zstd_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\common\zstd_trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\clevels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\hist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_literals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_sequences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_compress_superblock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_cwksp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_double_fast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_fast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_lazy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_ldm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_ldm_geartab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstd_opt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\compress\zstdmt_compress.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_ddict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_decompress_block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\decompress\zstd_decompress_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\cover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\lib\dictBuilder\divsufsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zstd-src\build\cmake\lib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{48604545-81B4-30C4-88D1-F3796DA2B115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8E505CAD-EC0D-3BD1-B900-C5386442AB30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

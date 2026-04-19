@@ -1,0 +1,46 @@
+{
+  "content": "Flora Executor v1.1.0 is now available!",
+  "embeds": [
+    {
+      "title": "Flora Executor v1.1.0",
+      "description": "A powerful Roblox script executor with a modern UI and advanced features.",
+      "color": 5814783,
+      "fields": [
+        {
+          "name": "Download",
+          "value": "[Click here to download](https://zipp-production-0794.up.railway.app/d/L87hVUm7/info)",
+          "inline": false
+        },
+        {
+          "name": "What's New",
+          "value": "- **Notification System**: Dismissible notifications with 3-second fade timer\n- **Settings Persistence**: Settings save to settings.dat (AlwaysOnTop, TextSize, AutoAttach)\n- **Join Discord Button**: Added Discord link in navigation\n- **Custom Title Bar**: Removed Windows title bar, added custom minimize/exit buttons\n- **Window Dragging**: Entire window is now draggable\n- **Rounded Corners**: 10px rounded corners on window\n- **UI Decluttering**: Reduced spacing, collapsible log terminal\n- **Button Improvements**: Centered Lower Class buttons with consistent spacing\n- **Window Size**: Changed to 1100x550 (wider, shorter)\n- **Build Output**: Renamed to Flora.exe",
+          "inline": false
+        },
+        {
+          "name": "How to Use",
+          "value": "1. Download FloraUpdater.exe\n2. Run the updater\n3. Select installation directory (or use default)\n4. Click Install/Update\n5. Extract the downloaded ZIP file\n6. Run Flora.exe\n7. Attach to Roblox and execute scripts",
+          "inline": false
+        },
+        {
+          "name": "System Requirements",
+          "value": "- Windows 10 or later\n- Roblox installed\n- Administrator privileges (recommended)",
+          "inline": false
+        },
+        {
+          "name": "Notes",
+          "value": "- First run requires manual ZIP extraction\n- Updater checks for updates automatically\n- Close Roblox before updating",
+          "inline": false
+        },
+        {
+          "name": "Detection Status",
+          "value": "Currently Updated to LATEST ROBLOX VERSION\nCurrently Around 85% UNC\nCurrently FULLY undetectable",
+          "inline": false
+        }
+      ],
+      "footer": {
+        "text": "Flora Executor • Version 1.1.0"
+      },
+      "timestamp": "2026-04-18T03:56:00.000Z"
+    }
+  ]
+}

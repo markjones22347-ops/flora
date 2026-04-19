@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/httplib-populate"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/32d0c3941a64b20789a8d3a442257a6a/httplib-populate.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/c22a86e5f0aac3d30347b70f8d7617b1/httplib-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/httplib-subbuild/CMakeFiles/72cf2efd7090ef20041549b62d77c4ae/httplib-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"httplib-populate"
+		],
+		"name" : "httplib-populate"
+	}
+}

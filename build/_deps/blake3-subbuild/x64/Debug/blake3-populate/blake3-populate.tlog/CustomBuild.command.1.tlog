@@ -1,0 +1,150 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/tmp/blake3-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/tmp/blake3-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-UPDATE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\blake3-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/tmp/blake3-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\blake3-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\blake3-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\blake3-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\795892BC2A61E7EA9F31C3604D22862B\BLAKE3-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\blake3-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\5ACC4662ACCF26BBF1F5F10FA5D26C24\BLAKE3-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/Debug/blake3-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/blake3-populate-prefix/src/blake3-populate-stamp/Debug/blake3-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKEFILES\147C22FD86CECC3993734E8095D31A13\BLAKE3-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\BUILD\_DEPS\BLAKE3-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/build/_deps/blake3-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\1ff9a2f13183138ab2e6bcb478a60400\zlib-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\5346a019a44ec7e590f8b947b5531942\zlib-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\0d47c4c4263b03e66f4df621127074f4\zlib-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\safes\Desktop\lua executor\Flora Executor\build\_deps\zlib-subbuild\CMakeFiles\zlib-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D62001E8-A3F4-37AD-AE7E-5B7A4C15496C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
