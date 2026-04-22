@@ -1,0 +1,10 @@
+build/
+*.WebView2/
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+*.lib
+*.zip
+*.nupkg

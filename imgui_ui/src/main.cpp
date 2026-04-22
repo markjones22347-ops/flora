@@ -555,6 +555,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     
                                     // Try to load HTML content directly
                                     std::string htmlContent = ReadHTMLContent();
+                                    std::string htmlPath = GetHTMLPath();
+                                    
+                                    if (htmlContent.empty()) {
+                                        MessageBoxA(g_hMainWindow, (std::string("Failed to read HTML file at: ") + htmlPath).c_str(), "Debug", MB_OK);
+                                    } else {
+                                        MessageBoxA(g_hMainWindow, (std::string("HTML loaded, size: ") + std::to_string(htmlContent.size())).c_str(), "Debug", MB_OK);
+                                    }
+                                    
                                     if (!htmlContent.empty()) {
                                         int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, NULL, 0);
                                         std::wstring whtmlContent(wsize, 0);
@@ -562,12 +570,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                         g_webview->NavigateToString(whtmlContent.c_str());
                                     } else {
                                         // Fallback to file URL
-                                        std::string htmlPath = GetHTMLPath();
                                         std::string fileUrl = "file:///";
                                         for (char c : htmlPath) {
                                             if (c == '\\') fileUrl += '/';
                                             else fileUrl += c;
                                         }
+                                        MessageBoxA(g_hMainWindow, fileUrl.c_str(), "File URL", MB_OK);
                                         int wsize = MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, NULL, 0);
                                         std::wstring wfileUrl(wsize, 0);
                                         MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, &wfileUrl[0], wsize);
