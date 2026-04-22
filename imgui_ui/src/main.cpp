@@ -483,35 +483,34 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wc.hbrBackground = (HBRUSH)CreateSolidBrush(RGB(10, 10, 12));
     wc.lpszClassName = "FloraWebView";
     
     RegisterClassExA(&wc);
     
     g_hMainWindow = CreateWindowExA(
-        WS_EX_LAYERED | WS_EX_APPWINDOW,
+        0,
         "FloraWebView",
         "Flora",
-        WS_POPUP,
+        WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME,
         100, 100, 1000, 700,
         NULL, NULL, hInstance, NULL
     );
     
-    SetLayeredWindowAttributes(g_hMainWindow, 0, 255, LWA_ALPHA);
-    
-    DWMNCRENDERINGPOLICY policy = DWMNCRP_ENABLED;
-    DwmSetWindowAttribute(g_hMainWindow, DWMWA_NCRENDERING_POLICY, &policy, sizeof(policy));
-    
-    MARGINS margins = {1, 1, 1, 1};
-    DwmExtendFrameIntoClientArea(g_hMainWindow, &margins);
-    
-    ShowWindow(g_hMainWindow, nCmdShow);
-    UpdateWindow(g_hMainWindow);
+    // Center window
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+    RECT rect;
+    GetWindowRect(g_hMainWindow, &rect);
+    int x = (screenWidth - (rect.right - rect.left)) / 2;
+    int y = (screenHeight - (rect.bottom - rect.top)) / 2;
+    SetWindowPos(g_hMainWindow, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     
     if (g_Settings.alwaysOnTop) {
         SetWindowPos(g_hMainWindow, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
     }
     
+    // Initialize WebView2 synchronously
     HRESULT hr = CreateCoreWebView2EnvironmentWithOptions(
         nullptr, nullptr, nullptr,
         Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
@@ -550,12 +549,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     initMsg["autoAttach"] = g_Settings.autoAttach;
                                     initMsg["fontSize"] = g_Settings.fontSize;
                                     SendToWebView(initMsg.dump());
+                                    
+                                    g_webviewController->put_IsVisible(TRUE);
+                                } else {
+                                    MessageBoxA(g_hMainWindow, "Failed to create WebView2 controller", "Error", MB_OK | MB_ICONERROR);
                                 }
                                 return S_OK;
                             }).Get());
+                } else {
+                    MessageBoxA(g_hMainWindow, "Failed to create WebView2 environment. Make sure WebView2 runtime is installed.", "Error", MB_OK | MB_ICONERROR);
                 }
                 return S_OK;
             }).Get());
+    
+    if (FAILED(hr)) {
+        MessageBoxA(g_hMainWindow, "Failed to initialize WebView2", "Error", MB_OK | MB_ICONERROR);
+        return 1;
+    }
+    
+    ShowWindow(g_hMainWindow, nCmdShow);
+    UpdateWindow(g_hMainWindow);
     
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
