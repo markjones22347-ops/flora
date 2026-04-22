@@ -105,7 +105,23 @@ std::string GetHTMLPath() {
     if (lastSlash != std::string::npos) {
         exePath = exePath.substr(0, lastSlash);
     }
-    return "file:///" + exePath + "\\web_ui\\index.html";
+    // Go up from build/Release to project root, then to web_ui
+    size_t buildPos = exePath.find("\\build\\");
+    if (buildPos != std::string::npos) {
+        exePath = exePath.substr(0, buildPos);
+    }
+    std::string htmlPath = exePath + "\\web_ui\\index.html";
+    
+    // Convert to file:// URL format (forward slashes)
+    std::string fileUrl = "file:///";
+    for (char c : htmlPath) {
+        if (c == '\\') {
+            fileUrl += '/';
+        } else {
+            fileUrl += c;
+        }
+    }
+    return fileUrl;
 }
 
 void SendToWebView(const std::string& message) {
