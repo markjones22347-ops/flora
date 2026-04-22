@@ -17,12 +17,11 @@ if(MSVC)
     endforeach()
 endif()
 
-# WebView2 SDK - use local SDK
-# Include WebView2 headers
+# Include directories
 include_directories(
-    third_party/webview2_sdk/build/native/include
     third_party
     third_party/nlohmann/include
+    webview2_sdk/build/native/include
 )
 
 # Main application
@@ -40,12 +39,12 @@ target_link_libraries(Flora PRIVATE
     shell32
     ole32
     oleaut32
-    kernel32
-    advapi32
-    version
-    shlwapi
-    "${CMAKE_CURRENT_SOURCE_DIR}/third_party/webview2_sdk/build/native/x64/WebView2LoaderStatic.lib"
+    uuid
+    dwmapi
 )
+
+# Link WebView2 loader
+target_link_libraries(Flora PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/webview2_sdk/build/native/x64/WebView2Loader.dll.lib")
 
 # Set output name
 target_link_options(Flora PRIVATE /SUBSYSTEM:WINDOWS)
@@ -57,9 +56,9 @@ add_custom_command(TARGET Flora POST_BUILD
     $<TARGET_FILE_DIR:Flora>
 )
 
-# Copy web UI files to output directory
+# Copy WebView2Loader.dll to output directory after build
 add_custom_command(TARGET Flora POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_CURRENT_SOURCE_DIR}/web_ui"
-    $<TARGET_FILE_DIR:Flora>/web_ui
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_CURRENT_SOURCE_DIR}/webview2_sdk/build/native/x64/WebView2Loader.dll"
+    $<TARGET_FILE_DIR:Flora>
 )

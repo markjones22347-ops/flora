@@ -1,29 +1,25 @@
 #include <windows.h>
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 #include <shlobj.h>
-#include <tchar.h>
+#include <tlhelp32.h>
+#include <psapi.h>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <wrl.h>
 #include <WebView2.h>
+#include <wrl.h>
+#include <dwmapi.h>
 
-#pragma comment(lib, "user32.lib")
-#pragma comment(lib, "gdi32.lib")
 #pragma comment(lib, "shell32.lib")
 #pragma comment(lib, "ole32.lib")
 #pragma comment(lib, "oleaut32.lib")
-#pragma comment(lib, "kernel32.lib")
-#pragma comment(lib, "advapi32.lib")
-#pragma comment(lib, "version.lib")
-#pragma comment(lib, "shlwapi.lib")
+#pragma comment(lib, "uuid.lib")
+#pragma comment(lib, "dwmapi.lib")
 
 using json = nlohmann::json;
-using Microsoft::WRL::ComPtr;
+using namespace Microsoft::WRL;
 
 // Flora API function pointers
 typedef bool (__stdcall *Initialize_t)();
@@ -55,62 +51,241 @@ unsigned int g_RobloxPid = 0;
 // Settings
 struct Settings {
     bool alwaysOnTop = false;
-    float textSize = 14.0f;
     bool autoAttach = false;
+    int fontSize = 14;
 } g_Settings;
 
-// Window
+// Script tabs
+struct ScriptTab {
+    std::string name;
+    std::string content;
+    bool open = true;
+};
+std::vector<ScriptTab> g_ScriptTabs;
+int g_CurrentTab = 0;
+
+// WebView2
+ICoreWebView2* g_webview = nullptr;
+ICoreWebView2Controller* g_webviewController = nullptr;
 HWND g_hMainWindow = nullptr;
-ComPtr<ICoreWebView2Controller> g_webView2Controller;
-ComPtr<ICoreWebView2> g_webView2;
 
 // Window dragging
 bool g_IsDragging = false;
 POINT g_DragOffset = {0, 0};
 
 // Forward declarations
-bool LoadFloraAPI();
-void UnloadFloraAPI();
-void AttachToRoblox();
-void DetachFromRoblox();
-void ExecuteScript(const std::string& script);
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+void LoadFloraAPI();
+void Inject();
+void Execute();
+void Disconnect();
+void RefreshProcs();
+std::vector<unsigned int> GetRobloxProcesses();
+std::string GetAppDataPath();
 void SaveSettings();
 void LoadSettings();
-std::string GetFloraDataDirectory();
-void SendToWebView(const std::string& message);
-void HandleWebViewMessage(const std::string& message);
 
-std::string GetFloraDataDirectory() {
-    char appDataPath[MAX_PATH];
-    if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath))) {
-        std::string floraDir = std::string(appDataPath) + "\\Flora";
-        CreateDirectoryA(floraDir.c_str(), NULL);
-        return floraDir;
-    }
-    char tempPath[MAX_PATH];
-    if (GetTempPathA(MAX_PATH, tempPath)) {
-        std::string floraDir = std::string(tempPath) + "Flora";
-        CreateDirectoryA(floraDir.c_str(), NULL);
-        return floraDir;
-    }
-    return ".";
+// IPC handlers
+void HandleWebMessage(const std::string& message);
+void SendToWebView(const std::string& message);
+
+// Helper functions
+std::string ReadFile(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open()) return "";
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    return content;
 }
 
-bool LoadFloraAPI() {
-    char modulePath[MAX_PATH];
-    GetModuleFileNameA(NULL, modulePath, MAX_PATH);
-    std::string moduleDir = modulePath;
-    size_t lastSlash = moduleDir.find_last_of("\\/");
+std::string GetHTMLPath() {
+    char path[MAX_PATH];
+    GetModuleFileNameA(NULL, path, MAX_PATH);
+    std::string exePath(path);
+    size_t lastSlash = exePath.find_last_of("\\");
     if (lastSlash != std::string::npos) {
-        moduleDir = moduleDir.substr(0, lastSlash);
+        exePath = exePath.substr(0, lastSlash);
     }
-    std::string dllPath = moduleDir + "\\FloraAPI.dll";
+    return "file:///" + exePath + "\\web_ui\\index.html";
+}
 
+void SendToWebView(const std::string& message) {
+    if (g_webview) {
+        int size = MultiByteToWideChar(CP_UTF8, 0, message.c_str(), -1, NULL, 0);
+        if (size > 0) {
+            std::wstring wmessage(size, 0);
+            MultiByteToWideChar(CP_UTF8, 0, message.c_str(), -1, &wmessage[0], size);
+            g_webview->PostWebMessageAsJson(wmessage.c_str());
+        }
+    }
+}
+
+void HandleWebMessage(const std::string& messageJson) {
+    try {
+        json msg = json::parse(messageJson);
+        std::string action = msg["action"];
+        
+        if (action == "inject") {
+            Inject();
+        }
+        else if (action == "execute") {
+            std::string code = msg["code"];
+            if (!code.empty()) {
+                if (g_ExecuteScript) {
+                    int result = g_ExecuteScript(code.c_str(), code.length());
+                    json response;
+                    response["action"] = "execResult";
+                    response["success"] = (result == 0);
+                    if (result != 0) {
+                        char error[512];
+                        g_GetLastExecError(error, 512);
+                        response["error"] = error;
+                    }
+                    SendToWebView(response.dump());
+                }
+            }
+        }
+        else if (action == "disconnect") {
+            Disconnect();
+        }
+        else if (action == "refreshProcs") {
+            RefreshProcs();
+        }
+        else if (action == "killProc") {
+            unsigned int pid = msg["pid"];
+            HANDLE hProc = OpenProcess(PROCESS_TERMINATE, FALSE, pid);
+            if (hProc) {
+                TerminateProcess(hProc, 0);
+                CloseHandle(hProc);
+            }
+            RefreshProcs();
+        }
+        else if (action == "toggleSetting") {
+            std::string key = msg["key"];
+            bool value = msg["value"];
+            if (key == "alwaysOnTop") g_Settings.alwaysOnTop = value;
+            else if (key == "autoAttach") g_Settings.autoAttach = value;
+            else if (key == "fontSize") g_Settings.fontSize = msg["size"];
+            SaveSettings();
+            
+            if (key == "alwaysOnTop") {
+                SetWindowPos(g_hMainWindow, value ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+            }
+        }
+        else if (action == "saveFile") {
+            std::string code = msg["code"];
+            std::string name = msg["name"];
+            std::string appData = GetAppDataPath();
+            std::string scriptsPath = appData + "\\scripts";
+            CreateDirectoryA(scriptsPath.c_str(), NULL);
+            std::ofstream file(scriptsPath + "\\" + name + ".lua");
+            file << code;
+            file.close();
+        }
+        else if (action == "openFile") {
+            std::string name = msg["name"];
+            std::string appData = GetAppDataPath();
+            std::string scriptsPath = appData + "\\scripts";
+            std::string content = ReadFile(scriptsPath + "\\" + name + ".lua");
+            json response;
+            response["action"] = "fileLoaded";
+            response["name"] = name;
+            response["content"] = content;
+            SendToWebView(response.dump());
+        }
+        else if (action == "newTab") {
+            std::string name = msg["name"];
+            std::string content = msg["content"];
+            ScriptTab tab;
+            tab.name = name;
+            tab.content = content;
+            tab.open = true;
+            g_ScriptTabs.push_back(tab);
+            g_CurrentTab = g_ScriptTabs.size() - 1;
+        }
+        else if (action == "closeTab") {
+            int id = msg["id"];
+            if (id >= 0 && id < g_ScriptTabs.size()) {
+                g_ScriptTabs.erase(g_ScriptTabs.begin() + id);
+                if (g_CurrentTab >= g_ScriptTabs.size()) {
+                    g_CurrentTab = g_ScriptTabs.size() - 1;
+                }
+            }
+        }
+        else if (action == "switchTab") {
+            int id = msg["id"];
+            if (id >= 0 && id < g_ScriptTabs.size()) {
+                g_CurrentTab = id;
+            }
+        }
+        else if (action == "renameTab") {
+            int id = msg["id"];
+            std::string name = msg["name"];
+            if (id >= 0 && id < g_ScriptTabs.size()) {
+                g_ScriptTabs[id].name = name;
+            }
+        }
+        else if (action == "getTabs") {
+            json response;
+            response["action"] = "tabsData";
+            json tabs = json::array();
+            for (size_t i = 0; i < g_ScriptTabs.size(); i++) {
+                json tab;
+                tab["id"] = i;
+                tab["name"] = g_ScriptTabs[i].name;
+                tab["content"] = g_ScriptTabs[i].content;
+                tabs.push_back(tab);
+            }
+            response["tabs"] = tabs;
+            response["currentTab"] = g_CurrentTab;
+            SendToWebView(response.dump());
+        }
+        else if (action == "winClose") {
+            PostMessage(g_hMainWindow, WM_CLOSE, 0, 0);
+        }
+        else if (action == "winMin") {
+            ShowWindow(g_hMainWindow, SW_MINIMIZE);
+        }
+        else if (action == "winMax") {
+            static bool maximized = false;
+            if (maximized) {
+                ShowWindow(g_hMainWindow, SW_RESTORE);
+                maximized = false;
+            } else {
+                ShowWindow(g_hMainWindow, SW_MAXIMIZE);
+                maximized = true;
+            }
+        }
+        else if (action == "log") {
+            std::string msg_text = msg["message"];
+            std::string type = msg["type"];
+        }
+        else if (action == "getSettings") {
+            json response;
+            response["action"] = "settingsData";
+            response["alwaysOnTop"] = g_Settings.alwaysOnTop;
+            response["autoAttach"] = g_Settings.autoAttach;
+            response["fontSize"] = g_Settings.fontSize;
+            SendToWebView(response.dump());
+        }
+    } catch (const std::exception& e) {
+    }
+}
+
+void LoadFloraAPI() {
+    char path[MAX_PATH];
+    GetModuleFileNameA(NULL, path, MAX_PATH);
+    std::string exePath(path);
+    size_t lastSlash = exePath.find_last_of("\\");
+    if (lastSlash != std::string::npos) {
+        exePath = exePath.substr(0, lastSlash);
+    }
+    std::string dllPath = exePath + "\\FloraAPI.dll";
+    
     g_FloraDLL = LoadLibraryA(dllPath.c_str());
     if (!g_FloraDLL) {
-        return false;
+        return;
     }
-
+    
     g_Initialize = (Initialize_t)GetProcAddress(g_FloraDLL, "Initialize");
     g_FindRobloxProcess = (FindRobloxProcess_t)GetProcAddress(g_FloraDLL, "FindRobloxProcess");
     g_Connect = (Connect_t)GetProcAddress(g_FloraDLL, "Connect");
@@ -120,340 +295,322 @@ bool LoadFloraAPI() {
     g_GetDataModel = (GetDataModel_t)GetProcAddress(g_FloraDLL, "GetDataModel");
     g_ExecuteScript = (ExecuteScript_t)GetProcAddress(g_FloraDLL, "ExecuteScript");
     g_GetLastExecError = (GetLastExecError_t)GetProcAddress(g_FloraDLL, "GetLastExecError");
-
-    if (!g_Initialize || !g_FindRobloxProcess || !g_Connect || !g_Disconnect || 
-        !g_GetRobloxPid || !g_RedirConsole || !g_GetDataModel || !g_ExecuteScript) {
-        UnloadFloraAPI();
-        return false;
+    
+    if (g_Initialize) {
+        g_Initialize();
     }
-
-    if (g_Initialize()) {
-        return true;
-    }
-
-    UnloadFloraAPI();
-    return false;
 }
 
-void UnloadFloraAPI() {
-    if (g_Attached && g_Disconnect) {
-        g_Disconnect();
-    }
-    g_Attached = false;
-    g_RobloxPid = 0;
-
-    if (g_FloraDLL) {
-        FreeLibrary(g_FloraDLL);
-        g_FloraDLL = nullptr;
-    }
-
-    g_Initialize = nullptr;
-    g_FindRobloxProcess = nullptr;
-    g_Connect = nullptr;
-    g_Disconnect = nullptr;
-    g_GetRobloxPid = nullptr;
-    g_RedirConsole = nullptr;
-    g_GetDataModel = nullptr;
-    g_ExecuteScript = nullptr;
-    g_GetLastExecError = nullptr;
-}
-
-void AttachToRoblox() {
-    if (!g_FloraDLL) {
-        if (!LoadFloraAPI()) {
-            SendToWebView(R"({"type":"log","level":"error","message":"Failed to load FloraAPI.dll"})");
-            return;
-        }
-    }
-
-    if (g_Attached) {
-        SendToWebView(R"({"type":"log","level":"warning","message":"Already attached to Roblox"})");
-        return;
-    }
-
+void Inject() {
+    if (!g_FindRobloxProcess || !g_Connect) return;
+    
     unsigned int pid = g_FindRobloxProcess();
     if (pid == 0) {
-        SendToWebView(R"({"type":"log","level":"error","message":"Roblox process not found"})");
+        json response;
+        response["action"] = "injectResult";
+        response["success"] = false;
+        response["error"] = "Roblox not found";
+        SendToWebView(response.dump());
         return;
     }
-
+    
     if (g_Connect(pid)) {
         g_Attached = true;
         g_RobloxPid = pid;
-        SendToWebView(R"({"type":"attached"})");
-        SendToWebView(R"({"type":"log","level":"success","message":"Successfully attached to Roblox"})");
+        json response;
+        response["action"] = "injectResult";
+        response["success"] = true;
+        response["pid"] = pid;
+        SendToWebView(response.dump());
     } else {
-        SendToWebView(R"({"type":"log","level":"error","message":"Failed to connect to Roblox"})");
+        json response;
+        response["action"] = "injectResult";
+        response["success"] = false;
+        response["error"] = "Failed to attach";
+        SendToWebView(response.dump());
     }
 }
 
-void DetachFromRoblox() {
-    if (!g_Attached) {
-        return;
-    }
+void Execute() {
+    if (!g_Attached || !g_ExecuteScript) return;
+}
 
+void Disconnect() {
     if (g_Disconnect) {
         g_Disconnect();
     }
-
     g_Attached = false;
     g_RobloxPid = 0;
-    SendToWebView(R"({"type":"detached"})");
-    SendToWebView(R"({"type":"log","level":"info","message":"Detached from Roblox"})");
+    
+    json response;
+    response["action"] = "disconnected";
+    SendToWebView(response.dump());
 }
 
-void ExecuteScript(const std::string& script) {
-    if (!g_Attached) {
-        SendToWebView(R"({"type":"executeResult","success":false,"error":"Not attached to Roblox"})");
-        return;
-    }
-
-    if (g_ExecuteScript) {
-        int result = g_ExecuteScript(script.c_str(), script.length());
-        if (result == 0) {
-            SendToWebView(R"({"type":"executeResult","success":true})");
-            SendToWebView(R"({"type":"log","level":"success","message":"Script executed successfully"})");
-        } else {
-            char errorBuffer[256];
-            if (g_GetLastExecError) {
-                g_GetLastExecError(errorBuffer, sizeof(errorBuffer));
-                SendToWebView(R"({"type":"executeResult","success":false,"error":"Execution failed"})");
-                SendToWebView(R"({"type":"log","level":"error","message":"Script execution failed"})");
+std::vector<unsigned int> GetRobloxProcesses() {
+    std::vector<unsigned int> pids;
+    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnapshot == INVALID_HANDLE_VALUE) return pids;
+    
+    PROCESSENTRY32 pe32;
+    pe32.dwSize = sizeof(PROCESSENTRY32);
+    
+    if (Process32First(hSnapshot, &pe32)) {
+        do {
+            std::string name = pe32.szExeFile;
+            if (name == "RobloxPlayerBeta.exe" || name == "RobloxPlayerLauncher.exe" || 
+                name == "Windows10Universal.exe" || name == "Roblox.exe") {
+                pids.push_back(pe32.th32ProcessID);
             }
-        }
+        } while (Process32Next(hSnapshot, &pe32));
     }
+    
+    CloseHandle(hSnapshot);
+    return pids;
+}
+
+void RefreshProcs() {
+    std::vector<unsigned int> pids = GetRobloxProcesses();
+    
+    json response;
+    response["action"] = "procList";
+    json procs = json::array();
+    for (unsigned int pid : pids) {
+        json proc;
+        proc["pid"] = pid;
+        HANDLE hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid);
+        if (hProc) {
+            char name[MAX_PATH];
+            if (GetModuleFileNameExA(hProc, NULL, name, MAX_PATH)) {
+                proc["name"] = name;
+            } else {
+                proc["name"] = "Roblox";
+            }
+            CloseHandle(hProc);
+        } else {
+            proc["name"] = "Roblox";
+        }
+        procs.push_back(proc);
+    }
+    response["processes"] = procs;
+    SendToWebView(response.dump());
+}
+
+std::string GetAppDataPath() {
+    char appDataPath[MAX_PATH];
+    if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath))) {
+        return std::string(appDataPath) + "\\Flora";
+    }
+    return "";
 }
 
 void SaveSettings() {
-    std::string floraDir = GetFloraDataDirectory();
-    std::string filePath = floraDir + "\\settings.dat";
-
-    json j;
-    j["alwaysOnTop"] = g_Settings.alwaysOnTop;
-    j["textSize"] = g_Settings.textSize;
-    j["autoAttach"] = g_Settings.autoAttach;
-
-    std::ofstream file(filePath);
-    if (file.is_open()) {
-        file << j.dump();
-        file.close();
-    }
+    std::string appData = GetAppDataPath();
+    CreateDirectoryA(appData.c_str(), NULL);
+    std::ofstream file(appData + "\\settings.json");
+    json settings;
+    settings["alwaysOnTop"] = g_Settings.alwaysOnTop;
+    settings["autoAttach"] = g_Settings.autoAttach;
+    settings["fontSize"] = g_Settings.fontSize;
+    file << settings.dump();
+    file.close();
 }
 
 void LoadSettings() {
-    std::string floraDir = GetFloraDataDirectory();
-    std::string filePath = floraDir + "\\settings.dat";
-
-    std::ifstream file(filePath);
+    std::string appData = GetAppDataPath();
+    std::ifstream file(appData + "\\settings.json");
     if (file.is_open()) {
         try {
-            json j;
-            file >> j;
-            g_Settings.alwaysOnTop = j.value("alwaysOnTop", false);
-            g_Settings.textSize = j.value("textSize", 14.0f);
-            g_Settings.autoAttach = j.value("autoAttach", false);
-        } catch (const json::exception& e) {
-            // Use default values if parsing fails
-        }
+            json settings;
+            file >> settings;
+            g_Settings.alwaysOnTop = settings.value("alwaysOnTop", false);
+            g_Settings.autoAttach = settings.value("autoAttach", false);
+            g_Settings.fontSize = settings.value("fontSize", 14);
+        } catch (...) {}
         file.close();
     }
-
-    // Send settings to web view
-    json j;
-    j["type"] = "settings";
-    j["settings"] = {
-        {"alwaysOnTop", g_Settings.alwaysOnTop},
-        {"textSize", g_Settings.textSize},
-        {"autoAttach", g_Settings.autoAttach}
-    };
-    SendToWebView(j.dump());
 }
 
-void SendToWebView(const std::string& message) {
-    if (g_webView2) {
-        std::wstring messageW(message.begin(), message.end());
-        g_webView2->PostWebMessageAsString(messageW.c_str());
-    }
-}
-
-void HandleWebViewMessage(const std::string& message) {
-    try {
-        json j = json::parse(message);
-        std::string type = j.value("type", "");
-
-        if (type == "attach") {
-            AttachToRoblox();
-        } else if (type == "detach") {
-            DetachFromRoblox();
-        } else if (type == "execute") {
-            std::string script = j.value("script", "");
-            ExecuteScript(script);
-        } else if (type == "redirConsole") {
-            if (g_RedirConsole) {
-                g_RedirConsole();
-                SendToWebView(R"({"type":"log","level":"info","message":"Console redirected"})");
-            }
-        } else if (type == "setAlwaysOnTop") {
-            g_Settings.alwaysOnTop = j.value("value", false);
-            SaveSettings();
-            if (g_hMainWindow) {
-                SetWindowPos(g_hMainWindow, g_Settings.alwaysOnTop ? HWND_TOPMOST : HWND_NOTOPMOST,
-                           0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-            }
-        } else if (type == "setTextSize") {
-            g_Settings.textSize = j.value("value", 14.0f);
-            SaveSettings();
-        } else if (type == "setAutoAttach") {
-            g_Settings.autoAttach = j.value("value", false);
-            SaveSettings();
-        } else if (type == "saveSettings") {
-            SaveSettings();
-        } else if (type == "loadSettings") {
-            LoadSettings();
-        } else if (type == "minimize") {
-            if (g_hMainWindow) {
-                ShowWindow(g_hMainWindow, SW_MINIMIZE);
-            }
-        } else if (type == "close") {
-            PostQuitMessage(0);
-        } else if (type == "openDiscord") {
-            ShellExecuteA(NULL, "open", "https://discord.gg/your-discord-invite", NULL, NULL, SW_SHOWNORMAL);
-        } else if (type == "moveWindow") {
-            int deltaX = j.value("deltaX", 0);
-            int deltaY = j.value("deltaY", 0);
-            if (g_hMainWindow) {
-                RECT rect;
-                GetWindowRect(g_hMainWindow, &rect);
-                SetWindowPos(g_hMainWindow, NULL, rect.left + deltaX, rect.top + deltaY,
-                           0, 0, SWP_NOSIZE | SWP_NOZORDER);
-            }
-        }
-    } catch (const json::exception& e) {
-        // Handle JSON parse error
-    }
-}
-
-// WebView2 message handler
-class WebViewMessageHandler : public Microsoft::WRL::RuntimeClass<
-    Microsoft::WRL::RuntimeClassFlags<Microsoft::WRL::ClassicCom>,
-    ICoreWebView2WebMessageReceivedEventHandler> {
+class WebMessageHandler : public ICoreWebView2WebMessageReceivedEventHandler {
 public:
-    HRESULT STDMETHODCALLTYPE Invoke(ICoreWebView2* sender, ICoreWebView2WebMessageReceivedEventArgs* args) override {
+    WebMessageHandler() : m_refCount(1) {}
+    
+    HRESULT STDMETHODCALLTYPE Invoke(
+        ICoreWebView2* sender,
+        ICoreWebView2WebMessageReceivedEventArgs* args) {
+        
         LPWSTR message = nullptr;
-        args->TryGetWebMessageAsString(&message);
-        if (message) {
-            int len = WideCharToMultiByte(CP_UTF8, 0, message, -1, nullptr, 0, nullptr, nullptr);
-            std::string messageStr(len, 0);
-            WideCharToMultiByte(CP_UTF8, 0, message, -1, &messageStr[0], len, nullptr, nullptr);
-            HandleWebViewMessage(messageStr);
-            CoTaskMemFree(message);
+        args->get_WebMessageAsJson(&message);
+        
+        int size = WideCharToMultiByte(CP_UTF8, 0, message, -1, NULL, 0, NULL, NULL);
+        if (size > 0) {
+            std::string utf8Message(size, 0);
+            WideCharToMultiByte(CP_UTF8, 0, message, -1, &utf8Message[0], size, NULL, NULL);
+            utf8Message.resize(size - 1);
+            HandleWebMessage(utf8Message);
         }
+        
+        CoTaskMemFree(message);
         return S_OK;
     }
+    
+    HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) {
+        if (riid == IID_IUnknown || riid == __uuidof(ICoreWebView2WebMessageReceivedEventHandler)) {
+            *ppvObject = this;
+            AddRef();
+            return S_OK;
+        }
+        return E_NOINTERFACE;
+    }
+    
+    ULONG STDMETHODCALLTYPE AddRef() { return InterlockedIncrement(&m_refCount); }
+    ULONG STDMETHODCALLTYPE Release() { 
+        ULONG ref = InterlockedDecrement(&m_refCount);
+        if (ref == 0) delete this;
+        return ref;
+    }
+
+private:
+    LONG m_refCount;
 };
 
-// Window procedure
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-    switch (message) {
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            break;
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    return 0;
-}
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    // Register window class
-    WNDCLASSEX wc = {0};
-    wc.cbSize = sizeof(WNDCLASSEX);
+    LoadSettings();
+    LoadFloraAPI();
+    
+    WNDCLASSEXA wc = { sizeof(wc) };
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
-    wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-    wc.lpszClassName = _T("FloraExecutor");
-    ::RegisterClassEx(&wc);
-
-    // Create window
-    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Flora Executor"), WS_POPUP, 
-                             100, 100, 1100, 550, nullptr, nullptr, hInstance, nullptr);
-    g_hMainWindow = hwnd;
-
-    if (!hwnd) {
-        return 1;
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wc.lpszClassName = "FloraWebView";
+    
+    RegisterClassExA(&wc);
+    
+    g_hMainWindow = CreateWindowExA(
+        WS_EX_LAYERED | WS_EX_APPWINDOW,
+        "FloraWebView",
+        "Flora",
+        WS_POPUP,
+        100, 100, 1000, 700,
+        NULL, NULL, hInstance, NULL
+    );
+    
+    SetLayeredWindowAttributes(g_hMainWindow, 0, 255, LWA_ALPHA);
+    
+    DWMNCRENDERINGPOLICY policy = DWMNCRP_ENABLED;
+    DwmSetWindowAttribute(g_hMainWindow, DWMWA_NCRENDERING_POLICY, &policy, sizeof(policy));
+    
+    MARGINS margins = {1, 1, 1, 1};
+    DwmExtendFrameIntoClientArea(g_hMainWindow, &margins);
+    
+    ShowWindow(g_hMainWindow, nCmdShow);
+    UpdateWindow(g_hMainWindow);
+    
+    if (g_Settings.alwaysOnTop) {
+        SetWindowPos(g_hMainWindow, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
     }
-
-    // Get the path to the web UI files
-    char modulePath[MAX_PATH];
-    GetModuleFileNameA(nullptr, modulePath, MAX_PATH);
-    std::string moduleDir = modulePath;
-    size_t lastSlash = moduleDir.find_last_of("\\/");
-    if (lastSlash != std::string::npos) {
-        moduleDir = moduleDir.substr(0, lastSlash);
-    }
-    std::string webUiPath = moduleDir + "\\web_ui\\index.html";
-
-    // Initialize WebView2 environment
-    HRESULT hr = CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr,
-        Microsoft::WRL::Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
-            [hwnd, webUiPath](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
+    
+    HRESULT hr = CreateCoreWebView2EnvironmentWithOptions(
+        nullptr, nullptr, nullptr,
+        Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
+            [](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
                 if (SUCCEEDED(result)) {
-                    // Create WebView2 controller
-                    env->CreateCoreWebView2Controller(hwnd,
-                        Microsoft::WRL::Callback<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>(
-                            [hwnd, webUiPath](HRESULT result, ICoreWebView2Controller* controller) -> HRESULT {
+                    env->CreateCoreWebView2Controller(
+                        g_hMainWindow,
+                        Callback<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>(
+                            [](HRESULT result, ICoreWebView2Controller* controller) -> HRESULT {
                                 if (SUCCEEDED(result)) {
-                                    g_webView2Controller = controller;
-                                    g_webView2Controller->get_CoreWebView2(&g_webView2);
+                                    g_webviewController = controller;
+                                    g_webviewController->get_CoreWebView2(&g_webview);
                                     
-                                    // Set up message handler
-                                    ComPtr<WebViewMessageHandler> messageHandler = Microsoft::WRL::Make<WebViewMessageHandler>();
-                                    EventRegistrationToken token;
-                                    g_webView2->add_WebMessageReceived(messageHandler.Get(), &token);
-
-                                    // Load HTML file
-                                    std::wstring webUiPathW(webUiPath.begin(), webUiPath.end());
-                                    g_webView2->Navigate(webUiPathW.c_str());
-
-                                    // Set bounds
+                                    ICoreWebView2Settings* settings;
+                                    g_webview->get_Settings(&settings);
+                                    settings->put_IsScriptEnabled(TRUE);
+                                    settings->put_AreDefaultScriptDialogsEnabled(TRUE);
+                                    settings->put_AreDevToolsEnabled(TRUE);
+                                    
                                     RECT bounds;
-                                    GetClientRect(hwnd, &bounds);
-                                    g_webView2Controller->put_Bounds(bounds);
+                                    GetClientRect(g_hMainWindow, &bounds);
+                                    g_webviewController->put_Bounds(bounds);
+                                    
+                                    WebMessageHandler* handler = new WebMessageHandler();
+                                    g_webview->add_WebMessageReceived(handler, nullptr);
+                                    
+                                    std::string htmlPath = GetHTMLPath();
+                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlPath.c_str(), -1, NULL, 0);
+                                    std::wstring whtmlPath(wsize, 0);
+                                    MultiByteToWideChar(CP_UTF8, 0, htmlPath.c_str(), -1, &whtmlPath[0], wsize);
+                                    g_webview->Navigate(whtmlPath.c_str());
+                                    
+                                    json initMsg;
+                                    initMsg["action"] = "init";
+                                    initMsg["alwaysOnTop"] = g_Settings.alwaysOnTop;
+                                    initMsg["autoAttach"] = g_Settings.autoAttach;
+                                    initMsg["fontSize"] = g_Settings.fontSize;
+                                    SendToWebView(initMsg.dump());
                                 }
                                 return S_OK;
                             }).Get());
                 }
                 return S_OK;
             }).Get());
-
-    if (FAILED(hr)) {
-        MessageBoxA(hwnd, "Failed to initialize WebView2. Please install the WebView2 Runtime.", "Error", MB_OK);
-        return 1;
-    }
-
-    // Load Flora API
-    LoadFloraAPI();
-
-    // Load settings
-    LoadSettings();
-
-    // Show window
-    ShowWindow(hwnd, nCmdShow);
-    UpdateWindow(hwnd);
-
-    // Message loop
+    
     MSG msg;
-    while (GetMessage(&msg, nullptr, 0, 0)) {
+    while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
-
-    // Cleanup
-    UnloadFloraAPI();
-    if (g_webView2Controller) {
-        g_webView2Controller->Close();
+    
+    if (g_webviewController) {
+        g_webviewController->Close();
+        g_webviewController = nullptr;
     }
-
+    if (g_webview) {
+        g_webview = nullptr;
+    }
+    
+    if (g_Disconnect) {
+        g_Disconnect();
+    }
+    
     return 0;
+}
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+    switch (message) {
+        case WM_SIZE: {
+            RECT bounds;
+            GetClientRect(hWnd, &bounds);
+            if (g_webviewController) {
+                g_webviewController->put_Bounds(bounds);
+            }
+            return 0;
+        }
+        case WM_LBUTTONDOWN: {
+            g_IsDragging = true;
+            g_DragOffset.x = LOWORD(lParam);
+            g_DragOffset.y = HIWORD(lParam);
+            return 0;
+        }
+        case WM_LBUTTONUP: {
+            g_IsDragging = false;
+            return 0;
+        }
+        case WM_MOUSEMOVE: {
+            if (g_IsDragging) {
+                POINT pt = { LOWORD(lParam), HIWORD(lParam) };
+                ClientToScreen(hWnd, &pt);
+                SetWindowPos(hWnd, NULL, pt.x - g_DragOffset.x, pt.y - g_DragOffset.y, 0, 0, 
+                             SWP_NOSIZE | SWP_NOZORDER);
+            }
+            return 0;
+        }
+        case WM_DESTROY: {
+            PostQuitMessage(0);
+            return 0;
+        }
+    }
+    return DefWindowProc(hWnd, message, wParam, lParam);
 }

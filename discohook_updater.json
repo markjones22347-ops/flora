@@ -1,0 +1,46 @@
+{
+  "content": "Flora Updater v1.1.1 is now available! Complete console-based redesign!",
+  "embeds": [
+    {
+      "title": "Flora Updater v1.1.1 - Console-Based Redesign",
+      "description": "A modern console-based updater for Flora Executor with auto-extraction and improved user experience.",
+      "color": 5814783,
+      "fields": [
+        {
+          "name": "Download",
+          "value": "[Click here to download](https://zipp-production-0794.up.railway.app/d/EWQG5evTUpB/info)",
+          "inline": false
+        },
+        {
+          "name": "What's New",
+          "value": "- **Console-Based Interface**: Completely redesigned from ImGui to modern console-based UI\n- **ASCII Banner**: New FLORA ASCII art banner with proper code page support\n- **Menu System**: Interactive menu with directory selection and current directory options\n- **Directory Chooser**: Built-in folder browser for custom installation paths\n- **Auto-Update Check**: Automatic version checking with Y/N confirmation prompt\n- **Color-Coded Logs**: Green for success, red for errors, blue for informational messages\n- **Auto-Extraction**: Automatic ZIP extraction after download\n- **Organized Installation**: All files placed in 'Flora Executor' subfolder\n- **1 Second Delays**: Slower process with 1-second delays for better visibility\n- **Config Persistence**: Installation path saved to %appdata%/Flora for future use",
+          "inline": false
+        },
+        {
+          "name": "How to Use",
+          "value": "1. Run FloraUpdater.exe\n2. Choose directory or use current directory\n3. Wait for auto-update check (Y/N prompt)\n4. Files auto-extract to 'Flora Executor' folder\n5. Flora.exe launches automatically",
+          "inline": false
+        },
+        {
+          "name": "System Requirements",
+          "value": "- Windows 10 or later\n- tar.exe included (built into Windows 10+)\n- Internet connection for downloads",
+          "inline": false
+        },
+        {
+          "name": "Features",
+          "value": "- Automatic version checking\n- Clean installation in dedicated folder\n- Color-coded console output\n- Persistent installation path\n- Auto-launch after update",
+          "inline": false
+        },
+        {
+          "name": "Detection Status",
+          "value": "Flora Executor is currently undetectable\nUpdated to latest Roblox version",
+          "inline": false
+        }
+      ],
+      "footer": {
+        "text": "Flora Updater • Version 1.1.1"
+      },
+      "timestamp": "2026-04-22T13:52:00.000Z"
+    }
+  ]
+}

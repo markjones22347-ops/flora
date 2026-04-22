@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -113,10 +113,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -124,7 +124,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;d3d11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -143,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -171,10 +171,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -182,7 +182,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;d3d11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -201,7 +201,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -229,10 +229,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -240,7 +240,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;d3d11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -259,7 +259,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -286,10 +286,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master;C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -297,7 +297,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;d3d11.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>winhttp.lib;shell32.lib;ole32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -378,12 +378,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src\zip.cpp" />
     <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src\version.cpp" />
     <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\src\json.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\imgui.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\imgui_draw.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\imgui_widgets.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\imgui_tables.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends\imgui_impl_win32.cpp" />
-    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\Flora Updater\imgui\imgui-master\backends\imgui_impl_dx11.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

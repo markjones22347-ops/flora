@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/webview2sdk-populate"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/e968ca542a27c4c26e84d2b62eef511d/webview2sdk-populate.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/81cb8f665c8d83a0d176b0d91c5995d7/webview2sdk-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/6562ab91ac205fcdf945178e0cf71d1b/webview2sdk-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"webview2sdk-populate"
+		],
+		"name" : "webview2sdk-populate"
+	}
+}

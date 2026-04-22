@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\webview2_sdk\build\native\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\webview2_sdk\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\webview2_sdk\build\native\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\webview2_sdk\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\webview2_sdk\build\native\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\webview2_sdk\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\webview2_sdk\build\native\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\nlohmann\include;C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\webview2_sdk\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

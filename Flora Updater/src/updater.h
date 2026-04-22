@@ -11,6 +11,10 @@ public:
 protected:
     virtual void Log(const std::string& message);
     
+public:
+    std::string GetRemoteVersion();
+    void SetLocalVersionWithPath(const std::string& version, const std::string& path);
+    
 private:
     std::string GetFloraInstallPath();
     std::string GetLocalVersion();

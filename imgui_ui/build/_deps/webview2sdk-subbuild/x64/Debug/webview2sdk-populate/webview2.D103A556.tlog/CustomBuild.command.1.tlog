@@ -1,0 +1,152 @@
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/tmp/webview2sdk-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/download-webview2sdk-populate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/verify-webview2sdk-populate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/extract-webview2sdk-populate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-UPDATE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-update"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\_deps\webview2sdk-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\_deps\webview2sdk-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\_deps\webview2sdk-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\6562AB91AC205FCDF945178E0CF71D1B\WEBVIEW2SDK-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\build\_deps\webview2sdk-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\81CB8F665C8D83A0D176B0D91C5995D7\WEBVIEW2SDK-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/Debug/webview2sdk-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/webview2sdk-populate-prefix/src/webview2sdk-populate-stamp/Debug/webview2sdk-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKEFILES\E968CA542A27C4C26E84D2B62EEF511D\WEBVIEW2SDK-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SAFES\DESKTOP\LUA EXECUTOR\FLORA EXECUTOR\IMGUI_UI\BUILD\_DEPS\WEBVIEW2SDK-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild" "-BC:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild" --check-stamp-file "C:/Users/safes/Desktop/lua executor/Flora Executor/imgui_ui/build/_deps/webview2sdk-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
