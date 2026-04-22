@@ -111,17 +111,17 @@ std::string GetHTMLPath() {
         exePath = exePath.substr(0, buildPos);
     }
     std::string htmlPath = exePath + "\\web_ui\\index.html";
-    
-    // Convert to file:// URL format (forward slashes)
-    std::string fileUrl = "file:///";
-    for (char c : htmlPath) {
-        if (c == '\\') {
-            fileUrl += '/';
-        } else {
-            fileUrl += c;
-        }
+    return htmlPath;
+}
+
+std::string ReadHTMLContent() {
+    std::string htmlPath = GetHTMLPath();
+    std::ifstream file(htmlPath);
+    if (!file.is_open()) {
+        return "";
     }
-    return fileUrl;
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    return content;
 }
 
 void SendToWebView(const std::string& message) {
@@ -553,11 +553,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     WebMessageHandler* handler = new WebMessageHandler();
                                     g_webview->add_WebMessageReceived(handler, nullptr);
                                     
-                                    std::string htmlPath = GetHTMLPath();
-                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlPath.c_str(), -1, NULL, 0);
-                                    std::wstring whtmlPath(wsize, 0);
-                                    MultiByteToWideChar(CP_UTF8, 0, htmlPath.c_str(), -1, &whtmlPath[0], wsize);
-                                    g_webview->Navigate(whtmlPath.c_str());
+                                    // Try to load HTML content directly
+                                    std::string htmlContent = ReadHTMLContent();
+                                    if (!htmlContent.empty()) {
+                                        int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, NULL, 0);
+                                        std::wstring whtmlContent(wsize, 0);
+                                        MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, &whtmlContent[0], wsize);
+                                        g_webview->NavigateToString(whtmlContent.c_str());
+                                    } else {
+                                        // Fallback to file URL
+                                        std::string htmlPath = GetHTMLPath();
+                                        std::string fileUrl = "file:///";
+                                        for (char c : htmlPath) {
+                                            if (c == '\\') fileUrl += '/';
+                                            else fileUrl += c;
+                                        }
+                                        int wsize = MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, NULL, 0);
+                                        std::wstring wfileUrl(wsize, 0);
+                                        MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, &wfileUrl[0], wsize);
+                                        g_webview->Navigate(wfileUrl.c_str());
+                                    }
                                     
                                     json initMsg;
                                     initMsg["action"] = "init";
