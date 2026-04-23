@@ -4,6 +4,24 @@
     <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\third_party\imgui\imgui_impl_dx11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\safes\Desktop\lua executor\Flora Executor\imgui_ui\CMakeLists.txt" />

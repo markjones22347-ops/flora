@@ -21,12 +21,18 @@ endif()
 include_directories(
     third_party
     third_party/nlohmann/include
-    webview2_sdk/build/native/include
+    third_party/imgui
 )
 
 # Main application
 set(APP_SOURCES
     src/main.cpp
+    third_party/imgui/imgui.cpp
+    third_party/imgui/imgui_draw.cpp
+    third_party/imgui/imgui_tables.cpp
+    third_party/imgui/imgui_widgets.cpp
+    third_party/imgui/imgui_impl_win32.cpp
+    third_party/imgui/imgui_impl_dx11.cpp
 )
 
 # Create executable
@@ -36,11 +42,8 @@ add_executable(Flora WIN32 ${APP_SOURCES})
 target_link_libraries(Flora PRIVATE
     user32
     gdi32
+    d3d11
     shell32
-    ole32
-    oleaut32
-    uuid
-    dwmapi
 )
 
 # Link WebView2 loader
@@ -53,12 +56,5 @@ target_link_options(Flora PRIVATE /SUBSYSTEM:WINDOWS)
 add_custom_command(TARGET Flora POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_CURRENT_SOURCE_DIR}/../build/Release/FloraAPI.dll"
-    $<TARGET_FILE_DIR:Flora>
-)
-
-# Copy WebView2Loader.dll to output directory after build
-add_custom_command(TARGET Flora POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${CMAKE_CURRENT_SOURCE_DIR}/webview2_sdk/build/native/x64/WebView2Loader.dll"
     $<TARGET_FILE_DIR:Flora>
 )
