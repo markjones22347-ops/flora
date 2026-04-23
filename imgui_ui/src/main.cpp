@@ -553,12 +553,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     WebMessageHandler* msgHandler = new WebMessageHandler();
                                     g_webview->add_WebMessageReceived(msgHandler, nullptr);
                                     
-                                    // Navigate to HTML file using proper file:// URL
-                                    std::string htmlPath = GetHTMLPath();
+                                    // Get absolute path to HTML file
+                                    char path[MAX_PATH];
+                                    GetModuleFileNameA(NULL, path, MAX_PATH);
+                                    std::string exePath(path);
+                                    size_t lastSlash = exePath.find_last_of("\\");
+                                    if (lastSlash != std::string::npos) {
+                                        exePath = exePath.substr(0, lastSlash);
+                                    }
+                                    
+                                    // Go up from build/Release to imgui_ui, then to web_ui
+                                    size_t buildPos = exePath.rfind("\\build\\");
+                                    if (buildPos != std::string::npos) {
+                                        exePath = exePath.substr(0, buildPos);
+                                    }
+                                    
+                                    std::string htmlPath = exePath + "\\web_ui\\index.html";
+                                    
+                                    // Convert to file:// URL with forward slashes
                                     std::string fileUrl = "file:///";
                                     for (char c : htmlPath) {
                                         if (c == '\\') fileUrl += '/';
-                                        else if (c == ' ') fileUrl += "%20";
                                         else fileUrl += c;
                                     }
                                     
