@@ -28,16 +28,21 @@ struct Settings {
 // FloraAPI
 HMODULE g_FloraAPI = NULL;
 
-// Function pointers from FloraAPI
-typedef void (*AttachFunc)();
-typedef void (*DetachFunc)();
-typedef void (*ExecuteFunc)(const char*);
-typedef bool (*IsAttachedFunc)();
+// Function pointers from FloraAPI (matches exports.h)
+typedef bool (*InitializeFunc)();
+typedef DWORD (*FindRobloxProcessFunc)();
+typedef bool (*ConnectFunc)(DWORD pid);
+typedef void (*DisconnectFunc)();
+typedef DWORD (*GetRobloxPidFunc)();
+typedef int (*ExecuteScriptFunc)(const char* source, int sourceLen);
+typedef int (*GetLastExecErrorFunc)(char* buffer, int bufLen);
 
-AttachFunc g_Attach = NULL;
-DetachFunc g_Detach = NULL;
-ExecuteFunc g_Execute = NULL;
-IsAttachedFunc g_IsAttached = NULL;
+ConnectFunc g_Connect = NULL;
+DisconnectFunc g_Disconnect = NULL;
+ExecuteScriptFunc g_ExecuteScript = NULL;
+GetRobloxPidFunc g_GetRobloxPid = NULL;
+InitializeFunc g_Initialize = NULL;
+FindRobloxProcessFunc g_FindRobloxProcess = NULL;
 
 // Logs
 std::vector<std::string> g_logs;
@@ -68,15 +73,26 @@ void LoadFloraAPI() {
     
     AddLog("[INIT] FloraAPI.dll loaded successfully");
     
-    g_Attach = (AttachFunc)GetProcAddress(g_FloraAPI, "Attach");
-    g_Detach = (DetachFunc)GetProcAddress(g_FloraAPI, "Detach");
-    g_Execute = (ExecuteFunc)GetProcAddress(g_FloraAPI, "Execute");
-    g_IsAttached = (IsAttachedFunc)GetProcAddress(g_FloraAPI, "IsAttached");
+    // Load actual exported functions from exports.h
+    g_Initialize = (InitializeFunc)GetProcAddress(g_FloraAPI, "Initialize");
+    g_FindRobloxProcess = (FindRobloxProcessFunc)GetProcAddress(g_FloraAPI, "FindRobloxProcess");
+    g_Connect = (ConnectFunc)GetProcAddress(g_FloraAPI, "Connect");
+    g_Disconnect = (DisconnectFunc)GetProcAddress(g_FloraAPI, "Disconnect");
+    g_GetRobloxPid = (GetRobloxPidFunc)GetProcAddress(g_FloraAPI, "GetRobloxPid");
+    g_ExecuteScript = (ExecuteScriptFunc)GetProcAddress(g_FloraAPI, "ExecuteScript");
     
-    AddLog("[INIT] Attach function: " + std::string(g_Attach ? "FOUND" : "NOT FOUND"));
-    AddLog("[INIT] Detach function: " + std::string(g_Detach ? "FOUND" : "NOT FOUND"));
-    AddLog("[INIT] Execute function: " + std::string(g_Execute ? "FOUND" : "NOT FOUND"));
-    AddLog("[INIT] IsAttached function: " + std::string(g_IsAttached ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] Initialize: " + std::string(g_Initialize ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] FindRobloxProcess: " + std::string(g_FindRobloxProcess ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] Connect: " + std::string(g_Connect ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] Disconnect: " + std::string(g_Disconnect ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] GetRobloxPid: " + std::string(g_GetRobloxPid ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] ExecuteScript: " + std::string(g_ExecuteScript ? "FOUND" : "NOT FOUND"));
+    
+    // Initialize the API
+    if (g_Initialize) {
+        bool initResult = g_Initialize();
+        AddLog(std::string("[INIT] Initialize result: ") + (initResult ? "SUCCESS" : "FAILED"));
+    }
 }
 
 // Forward declarations
@@ -124,9 +140,10 @@ void RenderUI() {
     }
     
     // Status
-    bool attached = g_IsAttached ? g_IsAttached() : false;
+    DWORD attachedPid = g_GetRobloxPid ? g_GetRobloxPid() : 0;
+    bool attached = (attachedPid != 0);
     ImGui::TextColored(attached ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1), 
-                       attached ? "Status: Attached" : "Status: Not Attached");
+                       attached ? ("Status: Attached (PID: " + std::to_string(attachedPid) + ")").c_str() : "Status: Not Attached");
     
     // Script editor
     ImGui::InputTextMultiline("##script", g_scriptBuffer, sizeof(g_scriptBuffer), 
@@ -134,32 +151,48 @@ void RenderUI() {
     
     // Buttons
     if (ImGui::Button("Attach")) {
-        if (g_Attach) {
-            AddLog("[ATTACH] Calling Attach()...");
-            g_Attach();
-            AddLog("[ATTACH] Attach() returned");
+        if (g_FindRobloxProcess && g_Connect) {
+            AddLog("[ATTACH] Finding Roblox process...");
+            DWORD pid = g_FindRobloxProcess();
+            if (pid == 0) {
+                AddLog("[ERROR] No Roblox process found!");
+            } else {
+                AddLog("[ATTACH] Found Roblox PID: " + std::to_string(pid));
+                AddLog("[ATTACH] Connecting...");
+                bool connected = g_Connect(pid);
+                if (connected) {
+                    AddLog("[ATTACH] Successfully connected!");
+                } else {
+                    AddLog("[ERROR] Failed to connect to Roblox!");
+                }
+            }
         } else {
-            AddLog("[ERROR] Attach function not available!");
+            AddLog("[ERROR] API functions not available!");
         }
     }
     ImGui::SameLine();
     if (ImGui::Button("Detach")) {
-        if (g_Detach) {
-            AddLog("[DETACH] Calling Detach()...");
-            g_Detach();
-            AddLog("[DETACH] Detach() returned");
+        if (g_Disconnect) {
+            AddLog("[DETACH] Disconnecting...");
+            g_Disconnect();
+            AddLog("[DETACH] Disconnected");
         } else {
-            AddLog("[ERROR] Detach function not available!");
+            AddLog("[ERROR] Disconnect function not available!");
         }
     }
     ImGui::SameLine();
     if (ImGui::Button("Execute")) {
-        if (g_Execute) {
+        if (g_ExecuteScript) {
             AddLog("[EXECUTE] Executing script...");
-            g_Execute(g_scriptBuffer);
-            AddLog("[EXECUTE] Script executed");
+            int len = strlen(g_scriptBuffer);
+            int result = g_ExecuteScript(g_scriptBuffer, len);
+            if (result == 0) {
+                AddLog("[EXECUTE] Script executed successfully");
+            } else {
+                AddLog("[ERROR] Execute failed with code: " + std::to_string(result));
+            }
         } else {
-            AddLog("[ERROR] Execute function not available!");
+            AddLog("[ERROR] ExecuteScript function not available!");
         }
     }
     ImGui::SameLine();
