@@ -583,36 +583,34 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     WebMessageHandler* msgHandler = new WebMessageHandler();
                                     g_webview->add_WebMessageReceived(msgHandler, nullptr);
                                     
-                                    // Load HTML, CSS, and JS content and inline them
-                                    std::string htmlContent = ReadHTMLContent();
-                                    std::string cssContent = ReadCSSContent();
-                                    std::string jsContent = ReadJSContent();
+                                    // Try a minimal test HTML first
+                                    std::string testHTML = R"(<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            background: #1a1a2e; 
+            color: white; 
+            font-family: Arial; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        h1 { color: #4f8ef7; }
+    </style>
+</head>
+<body>
+    <h1>Flora Executor Test</h1>
+    <p>If you can see this, WebView2 is working!</p>
+</body>
+</html>)";
                                     
-                                    if (htmlContent.empty()) {
-                                        MessageBoxA(g_hMainWindow, "Failed to read HTML file", "Error", MB_OK | MB_ICONERROR);
-                                    } else {
-                                        // Inline CSS
-                                        if (!cssContent.empty()) {
-                                            size_t linkPos = htmlContent.find("<link rel=\"stylesheet\" href=\"styles.css\">");
-                                            if (linkPos != std::string::npos) {
-                                                htmlContent.replace(linkPos, 40, "<style>" + cssContent + "</style>");
-                                            }
-                                        }
-                                        
-                                        // Inline JS
-                                        if (!jsContent.empty()) {
-                                            size_t scriptPos = htmlContent.find("<script src=\"script.js\"></script>");
-                                            if (scriptPos != std::string::npos) {
-                                                htmlContent.replace(scriptPos, 33, "<script>" + jsContent + "</script>");
-                                            }
-                                        }
-                                        
-                                        // Load the inlined HTML
-                                        int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, NULL, 0);
-                                        std::wstring whtmlContent(wsize, 0);
-                                        MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, &whtmlContent[0], wsize);
-                                        g_webview->NavigateToString(whtmlContent.c_str());
-                                    }
+                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, testHTML.c_str(), -1, NULL, 0);
+                                    std::wstring wtestHTML(wsize, 0);
+                                    MultiByteToWideChar(CP_UTF8, 0, testHTML.c_str(), -1, &wtestHTML[0], wsize);
+                                    g_webview->NavigateToString(wtestHTML.c_str());
                                     
                                     json initMsg;
                                     initMsg["action"] = "init";
