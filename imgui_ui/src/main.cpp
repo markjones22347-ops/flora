@@ -538,8 +538,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         0,
         "FloraWebView",
         "Flora",
-        (WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME) | WS_CLIPCHILDREN,
-        100, 100, 1000, 700,
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 1000, 700,
         NULL, NULL, hInstance, NULL
     );
     
@@ -555,6 +555,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     if (g_Settings.alwaysOnTop) {
         SetWindowPos(g_hMainWindow, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
     }
+    
+    // Show window first, then initialize WebView2
+    ShowWindow(g_hMainWindow, SW_SHOW);
+    UpdateWindow(g_hMainWindow);
     
     // Initialize WebView2 synchronously
     HRESULT hr = CreateCoreWebView2EnvironmentWithOptions(
@@ -576,11 +580,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     settings->put_AreDefaultScriptDialogsEnabled(TRUE);
                                     settings->put_AreDevToolsEnabled(TRUE);
                                     
-                                    // Show the main window first
-                                    ShowWindow(g_hMainWindow, SW_SHOW);
-                                    UpdateWindow(g_hMainWindow);
-                                    
-                                    // Set bounds after window is shown
+                                    // Set bounds
                                     RECT bounds;
                                     GetClientRect(g_hMainWindow, &bounds);
                                     g_webviewController->put_Bounds(bounds);
