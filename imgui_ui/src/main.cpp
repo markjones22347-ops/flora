@@ -588,7 +588,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     WebMessageHandler* msgHandler = new WebMessageHandler();
                                     g_webview->add_WebMessageReceived(msgHandler, nullptr);
                                     
-                                    // Try a minimal test HTML first
+                                    // Try a minimal test HTML first using data URI
                                     std::string testHTML = R"(<!DOCTYPE html>
 <html>
 <head>
@@ -612,10 +612,30 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 </body>
 </html>)";
                                     
-                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, testHTML.c_str(), -1, NULL, 0);
-                                    std::wstring wtestHTML(wsize, 0);
-                                    MultiByteToWideChar(CP_UTF8, 0, testHTML.c_str(), -1, &wtestHTML[0], wsize);
-                                    g_webview->NavigateToString(wtestHTML.c_str());
+                                    // URL-encode the HTML for data URI
+                                    std::string encodedHTML;
+                                    for (char c : testHTML) {
+                                        if (c == ' ') encodedHTML += "%20";
+                                        else if (c == '#') encodedHTML += "%23";
+                                        else if (c == '%') encodedHTML += "%25";
+                                        else if (c == '\n') encodedHTML += "%0A";
+                                        else if (c == '\r') continue;
+                                        else encodedHTML += c;
+                                    }
+                                    
+                                    std::string dataURI = "data:text/html;charset=utf-8," + encodedHTML;
+                                    
+                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, dataURI.c_str(), -1, NULL, 0);
+                                    std::wstring wdataURI(wsize, 0);
+                                    MultiByteToWideChar(CP_UTF8, 0, dataURI.c_str(), -1, &wdataURI[0], wsize);
+                                    
+                                    HRESULT navResult = g_webview->Navigate(wdataURI.c_str());
+                                    
+                                    if (FAILED(navResult)) {
+                                        char errorMsg[256];
+                                        sprintf_s(errorMsg, "Navigate failed with HRESULT: 0x%08X", navResult);
+                                        MessageBoxA(g_hMainWindow, errorMsg, "Navigation Error", MB_OK | MB_ICONERROR);
+                                    }
                                     
                                     json initMsg;
                                     initMsg["action"] = "init";
