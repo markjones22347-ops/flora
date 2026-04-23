@@ -529,7 +529,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wc.hbrBackground = NULL;
     wc.lpszClassName = "FloraWebView";
     
     RegisterClassExA(&wc);
@@ -645,6 +645,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     SendToWebView(initMsg.dump());
                                     
                                     g_webviewController->put_IsVisible(TRUE);
+                                    
+                                    // Bring WebView2 to foreground
+                                    g_webviewController->MoveFocus(COREWEBVIEW2_MOVE_FOCUS_REASON_PROGRAMMATIC);
                                 } else {
                                     MessageBoxA(g_hMainWindow, "Failed to create WebView2 controller", "Error", MB_OK | MB_ICONERROR);
                                 }
