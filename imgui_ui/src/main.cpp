@@ -114,6 +114,36 @@ std::string GetHTMLPath() {
     return htmlPath;
 }
 
+std::string ReadCSSContent() {
+    std::string basePath = GetHTMLPath();
+    size_t lastSlash = basePath.find_last_of("\\");
+    if (lastSlash != std::string::npos) {
+        basePath = basePath.substr(0, lastSlash);
+    }
+    std::string cssPath = basePath + "\\styles.css";
+    std::ifstream file(cssPath);
+    if (!file.is_open()) {
+        return "";
+    }
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    return content;
+}
+
+std::string ReadJSContent() {
+    std::string basePath = GetHTMLPath();
+    size_t lastSlash = basePath.find_last_of("\\");
+    if (lastSlash != std::string::npos) {
+        basePath = basePath.substr(0, lastSlash);
+    }
+    std::string jsPath = basePath + "\\script.js";
+    std::ifstream file(jsPath);
+    if (!file.is_open()) {
+        return "";
+    }
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    return content;
+}
+
 std::string ReadHTMLContent() {
     std::string htmlPath = GetHTMLPath();
     std::ifstream file(htmlPath);
@@ -553,34 +583,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     WebMessageHandler* msgHandler = new WebMessageHandler();
                                     g_webview->add_WebMessageReceived(msgHandler, nullptr);
                                     
-                                    // Get absolute path to HTML file
-                                    char path[MAX_PATH];
-                                    GetModuleFileNameA(NULL, path, MAX_PATH);
-                                    std::string exePath(path);
-                                    size_t lastSlash = exePath.find_last_of("\\");
-                                    if (lastSlash != std::string::npos) {
-                                        exePath = exePath.substr(0, lastSlash);
+                                    // Load HTML, CSS, and JS content and inline them
+                                    std::string htmlContent = ReadHTMLContent();
+                                    std::string cssContent = ReadCSSContent();
+                                    std::string jsContent = ReadJSContent();
+                                    
+                                    if (htmlContent.empty()) {
+                                        MessageBoxA(g_hMainWindow, "Failed to read HTML file", "Error", MB_OK | MB_ICONERROR);
+                                    } else {
+                                        // Inline CSS
+                                        if (!cssContent.empty()) {
+                                            size_t linkPos = htmlContent.find("<link rel=\"stylesheet\" href=\"styles.css\">");
+                                            if (linkPos != std::string::npos) {
+                                                htmlContent.replace(linkPos, 40, "<style>" + cssContent + "</style>");
+                                            }
+                                        }
+                                        
+                                        // Inline JS
+                                        if (!jsContent.empty()) {
+                                            size_t scriptPos = htmlContent.find("<script src=\"script.js\"></script>");
+                                            if (scriptPos != std::string::npos) {
+                                                htmlContent.replace(scriptPos, 33, "<script>" + jsContent + "</script>");
+                                            }
+                                        }
+                                        
+                                        // Load the inlined HTML
+                                        int wsize = MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, NULL, 0);
+                                        std::wstring whtmlContent(wsize, 0);
+                                        MultiByteToWideChar(CP_UTF8, 0, htmlContent.c_str(), -1, &whtmlContent[0], wsize);
+                                        g_webview->NavigateToString(whtmlContent.c_str());
                                     }
-                                    
-                                    // Go up from build/Release to imgui_ui, then to web_ui
-                                    size_t buildPos = exePath.rfind("\\build\\");
-                                    if (buildPos != std::string::npos) {
-                                        exePath = exePath.substr(0, buildPos);
-                                    }
-                                    
-                                    std::string htmlPath = exePath + "\\web_ui\\index.html";
-                                    
-                                    // Convert to file:// URL with forward slashes
-                                    std::string fileUrl = "file:///";
-                                    for (char c : htmlPath) {
-                                        if (c == '\\') fileUrl += '/';
-                                        else fileUrl += c;
-                                    }
-                                    
-                                    int wsize = MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, NULL, 0);
-                                    std::wstring wfileUrl(wsize, 0);
-                                    MultiByteToWideChar(CP_UTF8, 0, fileUrl.c_str(), -1, &wfileUrl[0], wsize);
-                                    g_webview->Navigate(wfileUrl.c_str());
                                     
                                     json initMsg;
                                     initMsg["action"] = "init";
