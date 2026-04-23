@@ -576,6 +576,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     settings->put_AreDefaultScriptDialogsEnabled(TRUE);
                                     settings->put_AreDevToolsEnabled(TRUE);
                                     
+                                    // Show the main window first
+                                    ShowWindow(g_hMainWindow, SW_SHOW);
+                                    UpdateWindow(g_hMainWindow);
+                                    
+                                    // Set bounds after window is shown
                                     RECT bounds;
                                     GetClientRect(g_hMainWindow, &bounds);
                                     g_webviewController->put_Bounds(bounds);
@@ -620,14 +625,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                                     SendToWebView(initMsg.dump());
                                     
                                     g_webviewController->put_IsVisible(TRUE);
-                                    
-                                    // Show the main window after WebView2 is ready
-                                    ShowWindow(g_hMainWindow, SW_SHOW);
-                                    UpdateWindow(g_hMainWindow);
-                                    
-                                    // Bring window to front
-                                    SetForegroundWindow(g_hMainWindow);
-                                    SetFocus(g_hMainWindow);
                                 } else {
                                     MessageBoxA(g_hMainWindow, "Failed to create WebView2 controller", "Error", MB_OK | MB_ICONERROR);
                                 }
@@ -643,9 +640,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         MessageBoxA(g_hMainWindow, "Failed to initialize WebView2", "Error", MB_OK | MB_ICONERROR);
         return 1;
     }
-    
-    ShowWindow(g_hMainWindow, nCmdShow);
-    UpdateWindow(g_hMainWindow);
     
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
