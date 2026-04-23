@@ -39,6 +39,14 @@ DetachFunc g_Detach = NULL;
 ExecuteFunc g_Execute = NULL;
 IsAttachedFunc g_IsAttached = NULL;
 
+// Logs
+std::vector<std::string> g_logs;
+
+void AddLog(const std::string& log) {
+    g_logs.push_back(log);
+    if (g_logs.size() > 100) g_logs.erase(g_logs.begin());
+}
+
 void LoadFloraAPI() {
     char path[MAX_PATH];
     GetModuleFileNameA(NULL, path, MAX_PATH);
@@ -49,13 +57,26 @@ void LoadFloraAPI() {
     }
     std::string dllPath = exePath + "\\FloraAPI.dll";
     
+    AddLog("[INIT] Loading FloraAPI from: " + dllPath);
+    
     g_FloraAPI = LoadLibraryA(dllPath.c_str());
-    if (g_FloraAPI) {
-        g_Attach = (AttachFunc)GetProcAddress(g_FloraAPI, "Attach");
-        g_Detach = (DetachFunc)GetProcAddress(g_FloraAPI, "Detach");
-        g_Execute = (ExecuteFunc)GetProcAddress(g_FloraAPI, "Execute");
-        g_IsAttached = (IsAttachedFunc)GetProcAddress(g_FloraAPI, "IsAttached");
+    if (!g_FloraAPI) {
+        DWORD error = GetLastError();
+        AddLog("[ERROR] Failed to load FloraAPI.dll. Error: " + std::to_string(error));
+        return;
     }
+    
+    AddLog("[INIT] FloraAPI.dll loaded successfully");
+    
+    g_Attach = (AttachFunc)GetProcAddress(g_FloraAPI, "Attach");
+    g_Detach = (DetachFunc)GetProcAddress(g_FloraAPI, "Detach");
+    g_Execute = (ExecuteFunc)GetProcAddress(g_FloraAPI, "Execute");
+    g_IsAttached = (IsAttachedFunc)GetProcAddress(g_FloraAPI, "IsAttached");
+    
+    AddLog("[INIT] Attach function: " + std::string(g_Attach ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] Detach function: " + std::string(g_Detach ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] Execute function: " + std::string(g_Execute ? "FOUND" : "NOT FOUND"));
+    AddLog("[INIT] IsAttached function: " + std::string(g_IsAttached ? "FOUND" : "NOT FOUND"));
 }
 
 // Forward declarations
@@ -67,12 +88,6 @@ void CleanupDeviceD3D11();
 
 // ImGui UI
 char g_scriptBuffer[65536] = "";
-std::vector<std::string> g_logs;
-
-void AddLog(const std::string& log) {
-    g_logs.push_back(log);
-    if (g_logs.size() > 100) g_logs.erase(g_logs.begin());
-}
 
 void RenderUI() {
     // Get window size and make ImGui fill the entire window
@@ -119,19 +134,38 @@ void RenderUI() {
     
     // Buttons
     if (ImGui::Button("Attach")) {
-        if (g_Attach) g_Attach();
+        if (g_Attach) {
+            AddLog("[ATTACH] Calling Attach()...");
+            g_Attach();
+            AddLog("[ATTACH] Attach() returned");
+        } else {
+            AddLog("[ERROR] Attach function not available!");
+        }
     }
     ImGui::SameLine();
     if (ImGui::Button("Detach")) {
-        if (g_Detach) g_Detach();
+        if (g_Detach) {
+            AddLog("[DETACH] Calling Detach()...");
+            g_Detach();
+            AddLog("[DETACH] Detach() returned");
+        } else {
+            AddLog("[ERROR] Detach function not available!");
+        }
     }
     ImGui::SameLine();
     if (ImGui::Button("Execute")) {
-        if (g_Execute) g_Execute(g_scriptBuffer);
+        if (g_Execute) {
+            AddLog("[EXECUTE] Executing script...");
+            g_Execute(g_scriptBuffer);
+            AddLog("[EXECUTE] Script executed");
+        } else {
+            AddLog("[ERROR] Execute function not available!");
+        }
     }
     ImGui::SameLine();
     if (ImGui::Button("Clear")) {
         memset(g_scriptBuffer, 0, sizeof(g_scriptBuffer));
+        AddLog("[UI] Script editor cleared");
     }
     
     // Log window
