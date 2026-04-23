@@ -75,8 +75,23 @@ void AddLog(const std::string& log) {
 }
 
 void RenderUI() {
-    ImGui::SetNextWindowSize(ImVec2(1000, 700), ImGuiCond_FirstUseEver);
-    ImGui::Begin("Flora Executor", NULL, ImGuiWindowFlags_MenuBar);
+    // Get window size and make ImGui fill the entire window
+    RECT rect;
+    GetClientRect(g_hWnd, &rect);
+    ImVec2 size(rect.right - rect.left, rect.bottom - rect.top);
+    
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::SetNextWindowSize(size);
+    
+    // No title bar, no resize, no move - fill the window completely
+    ImGuiWindowFlags flags = ImGuiWindowFlags_MenuBar | 
+                             ImGuiWindowFlags_NoTitleBar | 
+                             ImGuiWindowFlags_NoResize | 
+                             ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_NoCollapse |
+                             ImGuiWindowFlags_NoBringToFrontOnFocus;
+    
+    ImGui::Begin("Flora Executor", NULL, flags);
     
     // Menu bar
     if (ImGui::BeginMenuBar()) {
