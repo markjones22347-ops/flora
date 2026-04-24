@@ -53,12 +53,12 @@ namespace rblx {
 
     static std::vector<uintptr_t> GetChildren(HANDLE h, uintptr_t instance) {
         // Use direct offset from offsets.h (0x78 for version-9d412f44a6fe4081)
-        uintptr_t containerPtr = ProcessScanner::Read<uintptr_t>(h, instance + offsets::Instance::Children);
+        uintptr_t containerPtr = ProcessScanner::Read<uintptr_t>(h, instance + Offsets::Instance::ChildrenStart);
         if (containerPtr < 0x10000 || containerPtr > 0x7FFFFFFFFFFF) return {};
         if (containerPtr % 8 != 0) return {};
         
         uintptr_t startNode = ProcessScanner::Read<uintptr_t>(h, containerPtr);
-        uintptr_t endNode = ProcessScanner::Read<uintptr_t>(h, containerPtr + offsets::Instance::ChildrenEnd);
+        uintptr_t endNode = ProcessScanner::Read<uintptr_t>(h, containerPtr + 0x8);
         if (startNode < 0x10000 || startNode > 0x7FFFFFFFFFFF) return {};
         if (endNode < startNode) return {};
         
@@ -92,11 +92,11 @@ namespace rblx {
         path.push_back(ReadInstanceName(h, inst));
         uintptr_t current = inst;
         for (int i = 0; i < 20; i++) {
-            uintptr_t parent = ProcessScanner::Read<uintptr_t>(h, current + offsets::Instance::Parent);
+            uintptr_t parent = ProcessScanner::Read<uintptr_t>(h, current + Offsets::Instance::Parent);
             if (!parent || !IsValidInstance(h, parent)) break;
 
             // Stop if parent is the DataModel (its parent is null)
-            uintptr_t parentOfParent = ProcessScanner::Read<uintptr_t>(h, parent + offsets::Instance::Parent);
+            uintptr_t parentOfParent = ProcessScanner::Read<uintptr_t>(h, parent + Offsets::Instance::Parent);
             if (!parentOfParent) break;
 
             std::string name = ReadInstanceName(h, parent);

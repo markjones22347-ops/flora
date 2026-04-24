@@ -96,7 +96,7 @@ namespace Offsets {
 
     namespace Camera {
          inline constexpr uintptr_t CameraSubject = 0xe8;
-         inline constexpr uintptr_t CameraType = 0x158;
+         inline constexpr uintptr_t CameraType_ = 0x158;  // Renamed to avoid Windows macro conflict
          inline constexpr uintptr_t FieldOfView = 0x160;
          inline constexpr uintptr_t ImagePlaneDepth = 0x2f0;
          inline constexpr uintptr_t Position = 0x11c;
@@ -253,6 +253,7 @@ namespace Offsets {
          inline constexpr uintptr_t Name = 0xb0;
          inline constexpr uintptr_t Parent = 0x70;
          inline constexpr uintptr_t This = 0x8;
+         inline constexpr uintptr_t InstanceCapabilities = 0x208;  // Needed for script execution
     }
 
     namespace Lighting {
@@ -347,6 +348,7 @@ namespace Offsets {
          inline constexpr uintptr_t GUID = 0xe8;
          inline constexpr uintptr_t Hash = 0x160;
          inline constexpr uintptr_t IsCoreScript = 0x0;
+         inline constexpr uintptr_t BytecodeLoadedStatus = 0x188;  // Needed for re-execution
     }
 
     namespace MouseService {
@@ -428,6 +430,10 @@ namespace Offsets {
          inline constexpr uintptr_t MaxActivationDistance = 0x148;
          inline constexpr uintptr_t ObjectText = 0xf0;
          inline constexpr uintptr_t RequiresLineOfSight = 0x157;
+    }
+
+    namespace Jobs {
+         inline constexpr uintptr_t JobName = 0x18;
     }
 
     namespace RenderJob {
@@ -582,6 +588,8 @@ namespace Offsets {
          inline constexpr uintptr_t Pointer = 0x7746018;
          inline constexpr uintptr_t RenderView = 0xb40;
          inline constexpr uintptr_t ViewMatrix = 0x130;
+         inline constexpr uintptr_t ToDataModel1 = 0x840;
+         inline constexpr uintptr_t ToDataModel2 = 0x6f0;
     }
 
     namespace Weld {

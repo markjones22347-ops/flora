@@ -306,14 +306,14 @@ private:
     }
 
     static bool SetBytecode(HANDLE h, uintptr_t moduleScript, const std::string& rsb1Data) {
-        uintptr_t embedded = ProcessScanner::Read<uintptr_t>(h, moduleScript + offsets::ModuleScript::ModuleScriptByteCode);
+        uintptr_t embedded = ProcessScanner::Read<uintptr_t>(h, moduleScript + Offsets::ModuleScript::ByteCode);
         if (embedded < 0x10000 || embedded > 0x7FFFFFFFFFFF) return false;
 
         // Save originals before overwriting (use tracking callback)
         if (sTrackModuleCallback) {
             uintptr_t origPtr = ProcessScanner::Read<uintptr_t>(h, embedded + 0x10);
             uint64_t origSize = ProcessScanner::Read<uint64_t>(h, embedded + 0x20);
-            uint64_t origCaps = ProcessScanner::Read<uint64_t>(h, moduleScript + offsets::Instance::InstanceCapabilities);
+            uint64_t origCaps = ProcessScanner::Read<uint64_t>(h, moduleScript + Offsets::Instance::InstanceCapabilities);
             sTrackModuleCallback(moduleScript, embedded, origPtr, origSize, origCaps, h);
         }
 
@@ -332,11 +332,11 @@ private:
 
         // Patch SecurityCapabilities to maximum (Spoofing identity/permissions)
         uint64_t maxCapabilities = 0x3FFFFFFF;
-        ProcessScanner::WriteMemory(h, moduleScript + offsets::Instance::InstanceCapabilities, &maxCapabilities, sizeof(maxCapabilities));
+        ProcessScanner::WriteMemory(h, moduleScript + Offsets::Instance::InstanceCapabilities, &maxCapabilities, sizeof(maxCapabilities));
 
         // CRITICAL FIX: Clear loadedStatus to allow re-execution of the same module
         uint8_t zeroStatus = 0x00;
-        ProcessScanner::WriteMemory(h, moduleScript + offsets::ModuleScript::BytecodeLoadedStatus, &zeroStatus, sizeof(zeroStatus));
+        ProcessScanner::WriteMemory(h, moduleScript + Offsets::ModuleScript::BytecodeLoadedStatus, &zeroStatus, sizeof(zeroStatus));
 
         return true;
     }

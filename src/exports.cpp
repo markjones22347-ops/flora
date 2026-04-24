@@ -61,11 +61,11 @@ RBLX_API DWORD __stdcall FindRobloxProcess() {
         
         HANDLE h = proc->handle;
         uintptr_t base = proc->baseAddress;
-        uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + offsets::Pointer::TaskScheduler);
+        uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + Offsets::TaskScheduler::Pointer);
         if (!ts) continue;
         
-        uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobStart);
-        uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobEnd);
+        uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobStart);
+        uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobEnd);
         int jobs = (int)((jE > jS) ? (jE - jS) / 8 : 0);
         
         if (jobs > bestJobs) {
@@ -167,7 +167,7 @@ RBLX_API uintptr_t __stdcall GetDataModel() {
     uintptr_t base = gCore->baseAddress;
 
     // Try FakeDataModel pointer approach (proven working)
-    uintptr_t fakeDM = ProcessScanner::Read<uintptr_t>(h, base + offsets::Pointer::FakeDataModelPointer);
+    uintptr_t fakeDM = ProcessScanner::Read<uintptr_t>(h, base + Offsets::FakeDataModel::Pointer);
     if (fakeDM) {
         uintptr_t dmCandidate = ProcessScanner::Read<uintptr_t>(h, fakeDM + 0x1C0);
         if (dmCandidate) {
@@ -184,11 +184,11 @@ RBLX_API uintptr_t __stdcall GetDataModel() {
     }
 
     // Fallback: TaskScheduler job scan
-    uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + offsets::Pointer::TaskScheduler);
+    uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + Offsets::TaskScheduler::Pointer);
     if (!ts) return 0;
 
-    uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobStart);
-    uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobEnd);
+    uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobStart);
+    uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobEnd);
     size_t count = (jE > jS) ? (jE - jS) / 8 : 0;
 
     for (size_t i = 0; i < count; i++) {
@@ -221,10 +221,10 @@ RBLX_API int __stdcall GetJobCount() {
     if (!gCore || !gCore->handle) return -1;
     HANDLE h = gCore->handle;
     uintptr_t base = gCore->baseAddress;
-    uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + offsets::Pointer::TaskScheduler);
+    uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + Offsets::TaskScheduler::Pointer);
     if (!ts) return -1;
-    uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobStart);
-    uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobEnd);
+    uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobStart);
+    uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobEnd);
     return (int)((jE - jS) / 8);
 }
 
@@ -239,7 +239,7 @@ RBLX_API int __stdcall ExecuteScript(const char* source, int sourceLen) {
         bool valid = false;
         try {
             std::string name = rblx::ReadInstanceName(gCore->handle, gDataModel);
-            uintptr_t parent = ProcessScanner::Read<uintptr_t>(gCore->handle, gDataModel + offsets::Instance::Parent);
+            uintptr_t parent = ProcessScanner::Read<uintptr_t>(gCore->handle, gDataModel + Offsets::Instance::Parent);
             if ((name == "Game" || name == "App") && parent == 0) {
                 valid = true;
             }
@@ -290,25 +290,25 @@ RBLX_API bool __stdcall GetClientInfo(char* buffer, int maxSize) {
     std::string userId = "1";
 
     // Attempt to get JobId
-    std::string jid = rblx::ReadRobloxString(h, gDataModel + offsets::DataModel::JobId);
+    std::string jid = rblx::ReadRobloxString(h, gDataModel + Offsets::DataModel::JobId);
     if (!jid.empty()) jobId = jid;
 
     // Get Players Service
     uintptr_t players = rblx::FindChildByClassName(h, gDataModel, "Players");
     if (players) {
         // Get LocalPlayer
-        uintptr_t lp = ProcessScanner::Read<uintptr_t>(h, players + offsets::Players::LocalPlayer);
+        uintptr_t lp = ProcessScanner::Read<uintptr_t>(h, players + Offsets::Player::LocalPlayer);
         if (lp) {
             std::string lpName = rblx::ReadInstanceName(h, lp);
             if (!lpName.empty()) name = lpName;
             
-            uint64_t uid = ProcessScanner::Read<uint64_t>(h, lp + offsets::Player::UserId);
+            uint64_t uid = ProcessScanner::Read<uint64_t>(h, lp + Offsets::Player::UserId);
             if (uid > 0) userId = std::to_string(uid);
         }
     }
 
     std::string placeId = "0";
-    uint64_t pid = ProcessScanner::Read<uint64_t>(h, gDataModel + offsets::DataModel::PlaceId);
+    uint64_t pid = ProcessScanner::Read<uint64_t>(h, gDataModel + Offsets::DataModel::PlaceId);
     if (pid > 0) placeId = std::to_string(pid);
 
     std::string result = name + "|" + userId + "|" + jobId + "|" + placeId;

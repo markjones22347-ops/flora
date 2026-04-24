@@ -65,11 +65,11 @@ int main() {
         
         HANDLE h = roblox->handle;
         uintptr_t base = roblox->baseAddress;
-        uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + offsets::Pointer::TaskScheduler);
+        uintptr_t ts = ProcessScanner::Read<uintptr_t>(h, base + Offsets::TaskScheduler::Pointer);
         if (!ts) continue;
 
-        uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobStart);
-        uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + offsets::TaskScheduler::JobEnd);
+        uintptr_t jS = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobStart);
+        uintptr_t jE = ProcessScanner::Read<uintptr_t>(h, ts + Offsets::TaskScheduler::JobEnd);
         size_t count = (jE > jS) ? (jE - jS) / 8 : 0;
         if (count < 10) continue;
 
@@ -80,7 +80,7 @@ int main() {
             uintptr_t job = ProcessScanner::Read<uintptr_t>(h, jS + i * 8);
             if (!job) continue;
 
-            std::string jobName = ReadRobloxString(h, job + offsets::Jobs::JobName);
+            std::string jobName = ReadRobloxString(h, job + Offsets::Jobs::JobName);
             if (jobName.empty()) continue;
 
             std::vector<uintptr_t> jobMem(0x80, 0); 

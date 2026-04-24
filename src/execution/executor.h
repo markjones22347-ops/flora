@@ -483,9 +483,9 @@ public:
                 
                 uint8_t loadedStatus = ProcessScanner::Read<uint8_t>(hProcess, child + 0x188);
                 if (loadedStatus == 0x00) {
-                    uintptr_t parent = ProcessScanner::Read<uintptr_t>(hProcess, child + offsets::Instance::Parent);
+                    uintptr_t parent = ProcessScanner::Read<uintptr_t>(hProcess, child + Offsets::Instance::Parent);
                     if (parent && rblx::IsValidInstance(hProcess, parent)) {
-                        uintptr_t parentOfParent = ProcessScanner::Read<uintptr_t>(hProcess, parent + offsets::Instance::Parent);
+                        uintptr_t parentOfParent = ProcessScanner::Read<uintptr_t>(hProcess, parent + Offsets::Instance::Parent);
                         if (parentOfParent && rblx::IsValidInstance(hProcess, parentOfParent)) {
                             validModules.push_back(child);
                         }
@@ -519,7 +519,7 @@ public:
             std::string name = rblx::ReadInstanceName(hProcess, current);
             pathParts.push_back(name);
             if (name == "CoreGui") break;
-            current = ProcessScanner::Read<uintptr_t>(hProcess, current + offsets::Instance::Parent);
+            current = ProcessScanner::Read<uintptr_t>(hProcess, current + Offsets::Instance::Parent);
         }
         std::string fullPath;
         for (auto it = pathParts.rbegin(); it != pathParts.rend(); ++it) {
@@ -566,10 +566,10 @@ private:
         // --- Save-and-Revert Spoof Strategy ---
         // 1. Save the original pointer
         uintptr_t originalTarget = 0;
-        ProcessScanner::ReadMemory(hProcess, sCachedPLManager + offsets::PlayerListManager::SpoofTarget, &originalTarget, sizeof(uintptr_t));
+        ProcessScanner::ReadMemory(hProcess, sCachedPLManager + Offsets::PlayerConfigurer::Pointer, &originalTarget, sizeof(uintptr_t));
 
         // 2. Apply the spoof
-        ProcessScanner::WriteMemory(hProcess, sCachedPLManager + offsets::PlayerListManager::SpoofTarget, &targetModule, sizeof(uintptr_t));
+        ProcessScanner::WriteMemory(hProcess, sCachedPLManager + Offsets::PlayerConfigurer::Pointer, &targetModule, sizeof(uintptr_t));
 
         // 3. Trigger the script via menu simulation
         SimulateEscKey();  // Open menu — triggers require of our module
@@ -588,7 +588,7 @@ private:
         Sleep(200);
 
         // 4. IMMEDIATELY restore the original pointer
-        ProcessScanner::WriteMemory(hProcess, sCachedPLManager + offsets::PlayerListManager::SpoofTarget, &originalTarget, sizeof(uintptr_t));
+        ProcessScanner::WriteMemory(hProcess, sCachedPLManager + Offsets::PlayerConfigurer::Pointer, &originalTarget, sizeof(uintptr_t));
         return SUCCESS;
     }
 
@@ -596,7 +596,7 @@ private:
     // SetBytecode — Write RSB1 data to ModuleScript's ProtectedString
     // ========================================================================
     static bool SetBytecode(HANDLE hProcess, uintptr_t moduleScript, const std::string& rsb1Data) {
-        uintptr_t embedded = ProcessScanner::Read<uintptr_t>(hProcess, moduleScript + offsets::ModuleScript::ModuleScriptByteCode);
+        uintptr_t embedded = ProcessScanner::Read<uintptr_t>(hProcess, moduleScript + Offsets::ModuleScript::ByteCode);
         if (embedded < 0x10000 || embedded > 0x7FFFFFFFFFFF) {
             return false;
         }
@@ -607,7 +607,7 @@ private:
         saved.embeddedAddr = embedded;
         saved.originalBytecodePtr = ProcessScanner::Read<uintptr_t>(hProcess, embedded + 0x10);
         saved.originalSize = ProcessScanner::Read<uint64_t>(hProcess, embedded + 0x20);
-        saved.originalCapabilities = ProcessScanner::Read<uint64_t>(hProcess, moduleScript + offsets::Instance::InstanceCapabilities);
+        saved.originalCapabilities = ProcessScanner::Read<uint64_t>(hProcess, moduleScript + Offsets::Instance::InstanceCapabilities);
         sModifiedModules.push_back(saved);
         sLastProcessHandle = hProcess;
 
@@ -627,11 +627,11 @@ private:
         
         // Patch SecurityCapabilities to maximum (Spoofing identity/permissions)
         uint64_t maxCapabilities = 0x3FFFFFFF;
-        ProcessScanner::WriteMemory(hProcess, moduleScript + offsets::Instance::InstanceCapabilities, &maxCapabilities, sizeof(maxCapabilities));
+        ProcessScanner::WriteMemory(hProcess, moduleScript + Offsets::Instance::InstanceCapabilities, &maxCapabilities, sizeof(maxCapabilities));
 
         // CRITICAL FIX: Clear loadedStatus to allow re-execution of the same module
         uint8_t zeroStatus = 0x00;
-        ProcessScanner::WriteMemory(hProcess, moduleScript + offsets::ModuleScript::BytecodeLoadedStatus, &zeroStatus, sizeof(zeroStatus));
+        ProcessScanner::WriteMemory(hProcess, moduleScript + Offsets::ModuleScript::BytecodeLoadedStatus, &zeroStatus, sizeof(zeroStatus));
 
         return true;
     }
@@ -697,7 +697,7 @@ public:
                 // Restore original bytecode size
                 ProcessScanner::WriteMemory(sLastProcessHandle, m.embeddedAddr + 0x20, &m.originalSize, sizeof(uint64_t));
                 // Restore original capabilities
-                ProcessScanner::WriteMemory(sLastProcessHandle, m.moduleAddr + offsets::Instance::InstanceCapabilities, &m.originalCapabilities, sizeof(uint64_t));
+                ProcessScanner::WriteMemory(sLastProcessHandle, m.moduleAddr + Offsets::Instance::InstanceCapabilities, &m.originalCapabilities, sizeof(uint64_t));
             }
         }
         sModifiedModules.clear();

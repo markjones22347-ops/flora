@@ -34,28 +34,28 @@ public:
 
     std::string GetName(uintptr_t instance) {
         if (!instance) return "";
-        return ProcessScanner::ReadString(m_process, instance + offsets::Instance::Name);
+        return ProcessScanner::ReadString(m_process, instance + Offsets::Instance::Name);
     }
 
     std::string GetClassName(uintptr_t instance) {
         if (!instance) return "";
-        uintptr_t classDesc = ProcessScanner::Read<uintptr_t>(m_process, instance + offsets::Instance::ClassDescriptor);
+        uintptr_t classDesc = ProcessScanner::Read<uintptr_t>(m_process, instance + Offsets::Instance::ClassDescriptor);
         if (!classDesc) return "";
-        return ProcessScanner::ReadString(m_process, classDesc + offsets::Instance::ClassDescriptorToClassName);
+        return ProcessScanner::ReadString(m_process, classDesc + Offsets::Instance::ClassName);
     }
 
     uintptr_t GetParent(uintptr_t instance) {
         if (!instance) return 0;
-        return ProcessScanner::Read<uintptr_t>(m_process, instance + offsets::Instance::Parent);
+        return ProcessScanner::Read<uintptr_t>(m_process, instance + Offsets::Instance::Parent);
     }
 
     std::vector<uintptr_t> GetChildren(uintptr_t instance) {
         std::vector<uintptr_t> children;
         if (!instance) return children;
 
-        uintptr_t childrenStart = ProcessScanner::Read<uintptr_t>(m_process, instance + offsets::Instance::Children);
+        uintptr_t childrenStart = ProcessScanner::Read<uintptr_t>(m_process, instance + Offsets::Instance::ChildrenStart);
         uintptr_t childrenEnd = ProcessScanner::Read<uintptr_t>(m_process, 
-            instance + offsets::Instance::Children + offsets::Instance::ChildrenEnd);
+            instance + Offsets::Instance::ChildrenEnd);
 
         if (!childrenStart || !childrenEnd || childrenEnd <= childrenStart) return children;
 
@@ -75,14 +75,14 @@ public:
 
     // Method 1: TaskScheduler → walk jobs → find one with DataModel
     uintptr_t FindDataModelViaTaskScheduler() {
-        uintptr_t tsGlobal = m_base + offsets::Pointer::TaskScheduler;
+        uintptr_t tsGlobal = m_base + Offsets::TaskScheduler::Pointer;
         uintptr_t ts = ProcessScanner::Read<uintptr_t>(m_process, tsGlobal);
         if (!ts || ts < 0x10000) {
             return 0;
         }
 
-        uintptr_t jobStart = ProcessScanner::Read<uintptr_t>(m_process, ts + offsets::TaskScheduler::JobStart);
-        uintptr_t jobEnd = ProcessScanner::Read<uintptr_t>(m_process, ts + offsets::TaskScheduler::JobEnd);
+        uintptr_t jobStart = ProcessScanner::Read<uintptr_t>(m_process, ts + Offsets::TaskScheduler::JobStart);
+        uintptr_t jobEnd = ProcessScanner::Read<uintptr_t>(m_process, ts + Offsets::TaskScheduler::JobEnd);
 
         if (!jobStart || !jobEnd || jobEnd <= jobStart) {
             return 0;
@@ -96,10 +96,10 @@ public:
             if (!jobPtr) continue;
 
             // Read job name to find RenderJob
-            std::string jobName = ProcessScanner::ReadString(m_process, jobPtr + offsets::Jobs::JobName);
+            std::string jobName = ProcessScanner::ReadString(m_process, jobPtr + Offsets::Jobs::JobName);
 
             // Try DataModel at RenderJob offset
-            uintptr_t dm = ProcessScanner::Read<uintptr_t>(m_process, jobPtr + offsets::RenderJob::DataModel);
+            uintptr_t dm = ProcessScanner::Read<uintptr_t>(m_process, jobPtr + Offsets::RenderJob::RealDataModel);
             if (dm > 0x10000 && dm < 0x7FFFFFFFFFFF) {
                 std::string name = GetName(dm);
                 if (name == "Game" || name == "App") {
@@ -113,7 +113,7 @@ public:
 
     // Method 2: FakeDataModel global pointer
     uintptr_t FindDataModelViaFakePointer() {
-        uintptr_t fakePtr = ProcessScanner::Read<uintptr_t>(m_process, m_base + offsets::Pointer::FakeDataModelPointer);
+        uintptr_t fakePtr = ProcessScanner::Read<uintptr_t>(m_process, m_base + Offsets::FakeDataModel::Pointer);
         if (!fakePtr || fakePtr < 0x10000) {
             return 0;
         }
@@ -139,15 +139,15 @@ public:
 
     // Method 3: VisualEngine global → DataModel
     uintptr_t FindDataModelViaVisualEngine() {
-        uintptr_t veGlobal = ProcessScanner::Read<uintptr_t>(m_process, m_base + offsets::Pointer::VisualEnginePointer);
+        uintptr_t veGlobal = ProcessScanner::Read<uintptr_t>(m_process, m_base + Offsets::VisualEngine::Pointer);
         if (!veGlobal || veGlobal < 0x10000) {
             return 0;
         }
 
         // Chain: VisualEngine + 0x700 → ptr + 0x1C0 → DataModel
-        uintptr_t step1 = ProcessScanner::Read<uintptr_t>(m_process, veGlobal + offsets::VisualEngine::ToDataModel1);
+        uintptr_t step1 = ProcessScanner::Read<uintptr_t>(m_process, veGlobal + Offsets::VisualEngine::ToDataModel1);
         if (step1 > 0x10000 && step1 < 0x7FFFFFFFFFFF) {
-            uintptr_t dm = ProcessScanner::Read<uintptr_t>(m_process, step1 + offsets::VisualEngine::ToDataModel2);
+            uintptr_t dm = ProcessScanner::Read<uintptr_t>(m_process, step1 + Offsets::VisualEngine::ToDataModel2);
             if (dm > 0x10000 && dm < 0x7FFFFFFFFFFF) {
                 std::string name = GetName(dm);
                 if (name == "Game" || name == "App") {
