@@ -394,7 +394,12 @@ public:
 
         // Cache navigation on first call
         if (!sCachedModules) {
-            if (!CacheNavigation(hProcess, dataModel, errorOut)) return ERR_INJECT_FAILED;
+            std::cout << "[EXEC] Caching navigation...\n";
+            if (!CacheNavigation(hProcess, dataModel, errorOut)) {
+                std::cout << "[EXEC] CacheNavigation failed: " << errorOut << "\n";
+                return ERR_INJECT_FAILED;
+            }
+            std::cout << "[EXEC] Navigation cached successfully\n";
         }
 
         // Ensure HTTP server is running and callback is set
@@ -542,7 +547,12 @@ private:
                               const std::string& label, std::string& errorOut) {
         std::string targetName;
         uintptr_t targetModule = FindUnloadedModule(hProcess, targetName);
-        if (!targetModule) { errorOut = "No init module found"; return ERR_INJECT_FAILED; }
+        if (!targetModule) { 
+            errorOut = "No init module found - all modules may be loaded or CoreGui/Modules not accessible";
+            std::cout << "[EXEC] " << errorOut << "\n";
+            return ERR_INJECT_FAILED; 
+        }
+        std::cout << "[EXEC] Found target module: " << targetName << " at 0x" << std::hex << targetModule << std::dec << "\n";
 
         sUsedModules.insert(targetModule);
 
